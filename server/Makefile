@@ -5,12 +5,14 @@
 ## Login   <calo_d@epitech.eu>
 ##
 ## Started on  Thu Jul  7 10:22:07 2016 David Calo
-## Last update Thu Jul  7 11:09:42 2016 David Calo
+## Last update Thu Jul  7 19:09:12 2016 David Calo
 ##
 
 NAME	= serverJ2T3
 
-SRC	= main.c
+SRC	= main.c \
+	argument.c \
+	tools.c \
 
 CFLAGS	= -Wall -Wextra -Werror -g
 
@@ -28,6 +30,7 @@ OBJ	= $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 
 $(NAME): $(OBJ)
 	$(CC) $^ -o ../$@ $(LDFLAGS)
+	@/bin/echo -e "\x1b[32m*** Build server success ***\x1b[0m"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	$(CC) $(CFLAGS) -c $< -o $@ $(LDFLAGS)
