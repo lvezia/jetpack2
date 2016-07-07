@@ -5,14 +5,16 @@
 ## Login   <calo_d@epitech.eu>
 ##
 ## Started on  Thu Jul  7 10:22:07 2016 David Calo
-## Last update Thu Jul  7 10:22:21 2016 David Calo
+## Last update Thu Jul  7 10:58:41 2016 David Calo
 ##
 
-NAME	= serverj2T3
+NAME	= serverJ2T3
 
-SRC	= main.c \
+SRC	= main.c
 
 CFLAGS	= -Wall -Wextra -Werror -g
+
+LDFLAGS	= -Iinc/
 
 SRC_DIR	= src/
 
@@ -22,10 +24,10 @@ CC	= gcc
 
 RM	= rm -f
 
-OBJ	= $(addprefix $(OBJ_DIR), $(addsuffix .o, $(basename $(SRC))))
+OBJ	= $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 
 $(NAME): $(OBJ)
-	$(CC) $^ -o $@
+	$(CC) $^ -o $@ $(LDFLAGS)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	$(CC) $(CFLAGS) -c $< -o $@

@@ -5,14 +5,16 @@
 ## Login   <calo_d@epitech.eu>
 ##
 ## Started on  Thu Jul  7 10:22:07 2016 David Calo
-## Last update Thu Jul  7 10:28:44 2016 David Calo
+## Last update Thu Jul  7 10:59:21 2016 David Calo
 ##
 
-NAME	= clientj2T3
+NAME	= clientJ2T3
 
 SRC	= main.c \
 
 CFLAGS	= -Wall -Wextra -Werror -g
+
+LDFLAGS	= -Iinc/
 
 SRC_DIR	= src/
 
@@ -22,10 +24,10 @@ CC	= gcc
 
 RM	= rm -f
 
-OBJ	= $(addprefix $(OBJ_DIR), $(addsuffix .o, $(basename $(SRC))))
+OBJ	= $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 
 $(NAME): $(OBJ)
-	$(CC) $^ -o $@
+	$(CC) $^ -o $@ $(LDFLAGS)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	$(CC) $(CFLAGS) -c $< -o $@

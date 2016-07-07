@@ -5,22 +5,22 @@
 ## Login   <calo_d@epitech.eu>
 ##
 ## Started on  Thu Jul  7 09:41:47 2016 David Calo
-## Last update Thu Jul  7 10:30:40 2016 David Calo
+## Last update Thu Jul  7 10:46:11 2016 David Calo
 ##
 
 CLIENT	= client
 
 SERVER	= server
 
-all:
-	make all -C $(CLIENT)
-	make all -C $(SERVER)
-
 $(CLIENT):
 	make -C $(CLIENT)
 
 $(SERVER):
 	make -C $(SERVER)
+
+all:
+	make all -C $(CLIENT)
+	make all -C $(SERVER)
 
 clean:
 	make clean -C $(CLIENT)
