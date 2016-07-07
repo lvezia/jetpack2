@@ -5,7 +5,7 @@
 ## Login   <calo_d@epitech.eu>
 ##
 ## Started on  Thu Jul  7 10:22:07 2016 David Calo
-## Last update Thu Jul  7 19:09:12 2016 David Calo
+## Last update Thu Jul  7 19:34:16 2016 David Calo
 ##
 
 NAME	= serverJ2T3
@@ -41,7 +41,7 @@ clean:
 	$(RM) $(OBJ)
 
 fclean:
-	$(RM) $(OBJ) $(NAME)
+	$(RM) $(OBJ) ../$(NAME)
 
 re: fclean all
 

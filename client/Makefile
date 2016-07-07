@@ -5,7 +5,7 @@
 ## Login   <calo_d@epitech.eu>
 ##
 ## Started on  Thu Jul  7 10:22:07 2016 David Calo
-## Last update Thu Jul  7 19:29:55 2016 Louis Vezia
+## Last update Thu Jul  7 19:34:04 2016 David Calo
 ##
 
 NAME	= clientJ2T3
@@ -45,7 +45,7 @@ clean:
 	@/bin/echo -e "\x1b[32m*** Objects client removed $(NAME) ***\x1b[0m"
 
 fclean:
-	$(RM) $(OBJ) $(NAME)
+	$(RM) $(OBJ) ../$(NAME)
 	@/bin/echo -e "\x1b[32m*** Binary $(NAME) removed ***\x1b[0m"
 
 re: fclean all
