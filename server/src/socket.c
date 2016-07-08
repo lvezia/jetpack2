@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 09:34:31 2016 David Calo
-** Last update Fri Jul  8 10:02:56 2016 David Calo
+** Last update Fri Jul  8 19:21:26 2016 David Calo
 */
 
 #include "server.h"
@@ -13,33 +13,35 @@
 #include <sys/socket.h>
 #include <netdb.h>
 #include <arpa/inet.h>
+#include <stdio.h>
 
-int			set_socket(t_server *s)
+int			get_socket()
 {
   struct protoent	*pe;
   int			opt;
+  int			fd;
 
   if ((pe = getprotobyname("TCP")) == NULL)
     return (xputerror("getprotobyname: Failed"));
-  if ((s->fd = socket(AF_INET, SOCK_STREAM, pe->p_proto)) == -1)
+  if ((fd = socket(AF_INET, SOCK_STREAM, pe->p_proto)) == -1)
     return (xperror("socket"));
   opt = 1;
-  if (setsockopt(s->fd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt)))
+  if (setsockopt(fd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt)))
     return (xperror("setsockopt"));
-  s->max_fd = s->fd;
-  return (SUCCESS);
+  return (fd);
 }
 
-int	bind_listen_socket(t_server *s)
+int	bind_listen_socket(int fd, PORT port)
 {
   struct sockaddr_in	sin;
 
   sin.sin_family = AF_INET;
-  sin.sin_port = htons(s->port);
+  printf("%hu - %hu\n", port, htons(port));
+  sin.sin_port = htons(port);
   sin.sin_addr.s_addr = INADDR_ANY;
-  if (bind(s->fd, (struct sockaddr *)&sin, sizeof(sin)))
+  if (bind(fd, (struct sockaddr *)&sin, sizeof(sin)))
     return (xperror("bind"));
-  if (listen(s->fd, LISTEN_MAX_CLIENT))
+  if (listen(fd, LISTEN_MAX_CLIENT))
     return (xperror("listen"));
   return (SUCCESS);
 }

@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Thu Jul  7 11:06:54 2016 David Calo
-** Last update Fri Jul  8 10:14:01 2016 David Calo
+** Last update Fri Jul  8 21:03:41 2016 David Calo
 */
 
 #ifndef SERVER_H_
@@ -65,9 +65,10 @@ int	arg_map(char const *, t_server *);
 
 int	xputerror(char const *);
 int	xperror(char const *);
+void	printlog(int, char const *);
 
-int	set_socket(t_server *);
-int	bind_listen_socket(t_server *);
+int	get_socket();
+int	bind_listen_socket(int, PORT);
 
 void	process_map(t_server const *);
 
