@@ -50,7 +50,6 @@ struct	s_server
   int		max_fd;
   fd_set	fds[2];
   t_fd		*client;
-  t_client	cl;
 };
 
 typedef int	(*t_arg_fn)(char const *, t_server *);
@@ -67,6 +66,11 @@ int	set_socket(t_server *);
 int	bind_listen_socket(t_server *);
 
 void	process_map(t_server const *);
+
+int	client_read(t_server *);
+int	client_write(t_server *);
+int	client_accept(int);
+int	client_close(t_fd *, size_t);
 
 t_fd		*list_new(int, t_fd_fn, t_fd_fn);
 int		list_add(t_fd *, t_fd *);

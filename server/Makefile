@@ -12,6 +12,7 @@ NAME	= serverJ2T3
 
 SRC	= main.c \
 	argument.c \
+	client.c \
 	game_map.c \
 	list.c \
 	socket.c \
