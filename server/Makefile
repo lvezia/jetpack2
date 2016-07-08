@@ -15,6 +15,7 @@ SRC	= main.c \
 	client.c \
 	game_map.c \
 	list.c \
+	server.c \
 	socket.c \
 	tools.c \
 

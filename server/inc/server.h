@@ -11,9 +11,13 @@
 #ifndef SERVER_H_
 # define SERVER_H_
 
+# include <sys/select.h>
+# include <stddef.h>
+
 # define TABLEN(x) (sizeof(x) / sizeof(*x))
 # define SERVER_MSG "HELLO FORM SERVER"
 # define LISTEN_MAX_CLIENT 8
+# define PRINT_LOG 1
 
 # ifndef NULL
 #  define NULL ((void *)0)
@@ -66,6 +70,12 @@ int	set_socket(t_server *);
 int	bind_listen_socket(t_server *);
 
 void	process_map(t_server const *);
+
+int	server_read(t_server *);
+int	server_write(t_server *);
+int	server_select(t_server *);
+
+int	server_init(t_server *);
 
 int	client_read(t_server *);
 int	client_write(t_server *);
