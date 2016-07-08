@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Thu Jul  7 10:26:40 2016 David Calo
-** Last update Fri Jul  8 20:58:27 2016 David Calo
+** Last update Fri Jul  8 21:14:45 2016 David Calo
 */
 
 // #include <stdio.h>
@@ -39,7 +39,7 @@ void	server_free()
 int	main(int ac, char const *av[])
 {
   struct sigaction	sig;
-  t_bool	run;
+  int		run;
   size_t	i;
   size_t	j;
 
@@ -52,7 +52,7 @@ int	main(int ac, char const *av[])
   // process_map(&s);
   if (server_init(&s))
     return (84);
-  run = TRUE;
+  run = 1;
   while (run)
     {
       server_select(&s);
