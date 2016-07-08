@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 14:59:50 2016 David Calo
-** Last update Fri Jul  8 20:58:41 2016 David Calo
+** Last update Fri Jul  8 21:08:40 2016 David Calo
 */
 
 #include "server.h"
@@ -39,7 +39,5 @@ int	server_init(t_server *s)
   printf("sfd: %d\n", fd);
   s->client = list_new(fd, &server_read, &server_write);
   s->max_fd = s->client->fd;
-  // s->cl.size = 0;
-  // s->cl.fd = malloc(sizeof(s->cl.fd) * 2);
   return (SUCCESS);
 }

@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Thu Jul  7 11:06:54 2016 David Calo
-** Last update Fri Jul  8 21:03:41 2016 David Calo
+** Last update Fri Jul  8 21:10:28 2016 David Calo
 */
 
 #ifndef SERVER_H_
@@ -18,6 +18,8 @@
 # define SERVER_MSG "HELLO FORM SERVER"
 # define LISTEN_MAX_CLIENT 8
 # define PRINT_LOG 1
+# define DEFAULT_PORT 4242
+# define DEFAULT_GRAVITY -9.81
 
 # ifndef NULL
 #  define NULL ((void *)0)

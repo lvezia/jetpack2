@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Thu Jul  7 14:58:19 2016 David Calo
-** Last update Fri Jul  8 19:24:33 2016 David Calo
+** Last update Fri Jul  8 21:10:45 2016 David Calo
 */
 
 #include <stdio.h>
@@ -22,11 +22,11 @@ int		arg_read(int ac, char const *av[], t_server *s)
   int		i;
   size_t	j;
 
-  s->port = 0;
-  fn[0] = &arg_port;
-  s->gravity = -9;
-  fn[1] = &arg_gravity;
+  s->port = DEFAULT_PORT;
+  s->gravity = DEFAULT_GRAVITY;
   s->map = NULL;
+  fn[0] = &arg_port;
+  fn[1] = &arg_gravity;
   fn[2] = &arg_map;
   if (ac % 2 == 0)
     return (FAIL);
