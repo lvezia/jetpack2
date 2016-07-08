@@ -5,18 +5,18 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Thu Jul  7 18:12:38 2016 Louis Vezia
-** Last update	Thu Jul 07 19:24:27 2016 Louis Vezia
+** Last update	Fri Jul 08 13:09:36 2016 Louis Vezia
 */
 
 #include "client.h"
 
 int		run(t_client *client)
 {
-  pthread_mutex_init(&client->player.mutex, NULL);
+  pthread_t             thread;
+
+  play(client);
   pthread_mutex_init(&client->map.mutex, NULL);
-  pthread_create(&client->player.thread, NULL, play, &client->player);
-  pthread_create(&client->map.thread, NULL, graphique, &client->map);
-  pthread_join(client->player.thread, NULL);
-  pthread_join(client->map.thread, NULL);
+  pthread_create(&thread, NULL, graphique, &client);
+  pthread_join(thread, NULL);
   return (0);
 }

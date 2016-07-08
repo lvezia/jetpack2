@@ -5,7 +5,7 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Thu Jul  7 18:47:09 2016 Louis Vezia
-** Last update	Thu Jul 07 19:15:06 2016 Louis Vezia
+** Last update	Fri Jul 08 16:25:31 2016 Louis Vezia
 */
 
 #ifndef GRAPHIQUE_H_
@@ -15,11 +15,10 @@
 
 typedef struct	s_map
 {
-  pthread_t             thread;
   pthread_mutex_t       mutex;
   int		sizeX;
   int		sizeY;
-  char		*plan;
+  char		*map;
 }		t_map;
 
 void *graphique(void *arg);
