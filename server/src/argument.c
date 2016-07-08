@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Thu Jul  7 14:58:19 2016 David Calo
-** Last update Thu Jul  7 19:03:33 2016 David Calo
+** Last update Fri Jul  8 10:04:43 2016 David Calo
 */
 
 #include <stdio.h>
@@ -15,10 +15,10 @@
 
 #include "server.h"
 
-t_bool		arg_read(int ac, char const *av[], t_server *s)
+int		arg_read(int ac, char const *av[], t_server *s)
 {
   static char	*args[] = {"-p", "-g", "-m"};
-  t_bool	(*fn[6])(char const *, t_server *);
+  t_arg_fn	fn[3];
   int		i;
   size_t	j;
 
@@ -26,53 +26,51 @@ t_bool		arg_read(int ac, char const *av[], t_server *s)
   fn[1] = &arg_gravity;
   fn[2] = &arg_map;
   if (ac % 2 == 0)
-    return (FALSE);
+    return (FAIL);
   for (i = 1; i < ac; i += 2)
     for (j = 0; j < TABLEN(args); j++)
       if (strcmp(args[j], av[i]) == 0)
-	if (!fn[j](av[i + 1], s))
-	  {
-	    return (xputerror("Invalid argument"));
-	  }
-  return (TRUE);
+	if (fn[j](av[i + 1], s))
+	  return (xputerror("Invalid argument"));
+  return (SUCCESS);
 }
 
-t_bool		arg_port(char const *arg, t_server *s)
+int		arg_port(char const *arg, t_server *s)
 {
   size_t	i;
 
   if (!arg)
-    return (FALSE);
+    return (FAIL);
   for (i = 0; arg[i]; i++)
     if (!isdigit(arg[i]))
-      return (FALSE);
+      return (FAIL);
   s->port = atoi(arg);
-  return (TRUE);
+  return (SUCCESS);
 }
 
-t_bool		arg_gravity(char const *arg, t_server *s)
+int		arg_gravity(char const *arg, t_server *s)
 {
   size_t	i;
 
   if (!arg)
-    return (FALSE);
+    return (FAIL);
   for (i = 0; arg[i]; i++)
     if (!isdigit(arg[i]) && arg[i] != '.')
-      return (FALSE);
+      return (FAIL);
   s->gravity = atof(arg);
-  return (TRUE);
+  return (SUCCESS);
 }
 
-t_bool	arg_map(char const *arg, t_server *s)
+int	arg_map(char const *arg, t_server *s)
 {
   FILE	*file;
   char	*buf;
   long	len;
 
   if (!arg)
-    return (FALSE);
+    return (FAIL);
   if ((file = fopen(arg, "r")) == NULL)
-    return (FALSE);
+    return (FAIL);
   if (fseek(file, 0, SEEK_END) ||
       (len = ftell(file)) == -1 ||
       fseek(file, 0, SEEK_SET) ||
@@ -80,11 +78,11 @@ t_bool	arg_map(char const *arg, t_server *s)
       !fread(buf, 1, len, file))
     {
       if (fclose(file))
-	return (FALSE);
-      return (FALSE);
+	return (FAIL);
+      return (FAIL);
     }
   s->map = buf;
   if (fclose(file))
-    return (FALSE);
-  return (TRUE);
+    return (FAIL);
+  return (SUCCESS);
 }

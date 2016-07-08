@@ -14,6 +14,9 @@
 # define TABLEN(x) (sizeof(x) / sizeof(*x))
 # define SERVER_MSG "HELLO FORM SERVER"
 
+# define SUCCESS 0
+# define FAIL -1
+
 typedef enum	e_bool
 {
   FALSE,
@@ -29,11 +32,14 @@ typedef struct	s_server
   char		*map;
 }		t_server;
 
-t_bool	arg_read(int, char const *[], t_server *);
-t_bool	arg_port(char const *, t_server *);
-t_bool	arg_gravity(char const *, t_server *);
-t_bool	arg_map(char const *, t_server *);
+typedef int	(*t_arg_fn)(char const *, t_server *);
+
+int	arg_read(int, char const *[], t_server *);
+int	arg_port(char const *, t_server *);
+int	arg_gravity(char const *, t_server *);
+int	arg_map(char const *, t_server *);
 
 int	xputerror(char const *);
+int	xperror(char const *);
 
 #endif
