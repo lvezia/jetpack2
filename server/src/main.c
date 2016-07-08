@@ -5,10 +5,10 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Thu Jul  7 10:26:40 2016 David Calo
-** Last update Thu Jul  7 18:57:35 2016 David Calo
+** Last update Fri Jul  8 10:09:29 2016 David Calo
 */
 
-#include <stdio.h>
+// #include <stdio.h>
 
 #include "server.h"
 
@@ -18,9 +18,9 @@ int	main(int ac, char const *av[])
   t_server	server;
 
   arg_read(ac, av, &server);
-  // process_map();
-  // set_socket();
-  // bind_listen_socket();
+  process_map(&server);
+  set_socket(&server);
+  bind_listen_socket(&server);
   // run = TRUE;
   // while (run)
   //   {
