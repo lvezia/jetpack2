@@ -38,4 +38,4 @@ do:
 	make do -C $(CLIENT)
 	make do -C $(SERVER)
 
-.PHONY: all clean fclean re do
+.PHONY: $(CLIENT) $(SERVER) all clean fclean re do
