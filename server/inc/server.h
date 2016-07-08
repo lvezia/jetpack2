@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Thu Jul  7 11:06:54 2016 David Calo
-** Last update Fri Jul  8 21:10:28 2016 David Calo
+** Last update Fri Jul  8 21:18:33 2016 David Calo
 */
 
 #ifndef SERVER_H_
@@ -14,31 +14,8 @@
 # include <sys/select.h>
 # include <stddef.h>
 
-# define TABLEN(x) (sizeof(x) / sizeof(*x))
-# define SERVER_MSG "HELLO FORM SERVER"
-# define LISTEN_MAX_CLIENT 8
-# define PRINT_LOG 1
-# define DEFAULT_PORT 4242
-# define DEFAULT_GRAVITY -9.81
-
-# ifndef NULL
-#  define NULL ((void *)0)
-# endif
-
-# define SUCCESS 0
-# define FAIL -1
-
-typedef enum	e_bool
-{
-  FALSE,
-  TRUE
-}		t_bool;
-
-typedef unsigned short	PORT;
-
-typedef struct s_server	t_server;
-typedef struct s_fd	t_fd;
-typedef int		(*t_fd_fn)(t_server *);
+# include "types.h"
+# include "macros.h"
 
 struct	s_fd
 {
@@ -58,37 +35,6 @@ struct	s_server
   t_fd		*client;
 };
 
-typedef int	(*t_arg_fn)(char const *, t_server *);
-
-int	arg_read(int, char const *[], t_server *);
-int	arg_port(char const *, t_server *);
-int	arg_gravity(char const *, t_server *);
-int	arg_map(char const *, t_server *);
-
-int	xputerror(char const *);
-int	xperror(char const *);
-void	printlog(int, char const *);
-
-int	get_socket();
-int	bind_listen_socket(int, PORT);
-
-void	process_map(t_server const *);
-
-int	server_read(t_server *);
-int	server_write(t_server *);
-int	server_select(t_server *);
-
-int	server_init(t_server *);
-
-int	client_read(t_server *);
-int	client_write(t_server *);
-int	client_accept(int);
-int	client_close(t_fd *, size_t);
-
-t_fd		*list_new(int, t_fd_fn, t_fd_fn);
-int		list_add(t_fd *, t_fd *);
-int		list_remove(t_fd *, size_t);
-size_t		list_size(t_fd *);
-t_fd const	*list_get(t_fd *, size_t);
+# include "prototype.h"
 
 #endif
