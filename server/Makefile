@@ -5,7 +5,7 @@
 ## Login   <calo_d@epitech.eu>
 ##
 ## Started on  Thu Jul  7 10:22:07 2016 David Calo
-## Last update Thu Jul  7 19:34:16 2016 David Calo
+## Last update Fri Jul  8 10:12:00 2016 David Calo
 ##
 
 NAME	= serverJ2T3
@@ -13,6 +13,8 @@ NAME	= serverJ2T3
 SRC	= main.c \
 	argument.c \
 	tools.c \
+	socket.c \
+	game_map.c \
 
 CFLAGS	= -Wall -Wextra -Werror -g
 
