@@ -12,9 +12,10 @@ NAME	= serverJ2T3
 
 SRC	= main.c \
 	argument.c \
-	tools.c \
-	socket.c \
 	game_map.c \
+	list.c \
+	socket.c \
+	tools.c \
 
 CFLAGS	= -Wall -Wextra -Werror -g
 
