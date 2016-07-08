@@ -5,16 +5,16 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Thu Jul  7 18:46:09 2016 Louis Vezia
-** Last update	Thu Jul 07 19:24:55 2016 Louis Vezia
+** Last update	Fri Jul 08 13:09:39 2016 Louis Vezia
 */
 
 #include "client.h"
 
 void		*graphique(void *arg)
 {
-  t_map		*map;
+  t_client		*client;
 
-  map = (t_map *)arg;
-  (void)map;
+  client = (t_client *)arg;
+  (void)client;
   return (NULL);
 }
