@@ -5,7 +5,7 @@
 ## Login   <calo_d@epitech.eu>
 ##
 ## Started on  Thu Jul  7 10:22:07 2016 David Calo
-## Last update Fri Jul  8 16:30:49 2016 louis vezia
+## Last update Sat Jul  9 16:54:36 2016 louis vezia
 ##
 
 NAME	= clientJ2T3
@@ -18,6 +18,8 @@ SRC	= main.c	\
 	  player.c	\
 	  manage_msg.c	\
 	  set_game.c	\
+	  manage_msg.c	\
+	  refresh_data.c\
 
 CFLAGS	= -Wall -Wextra -Werror -g
 

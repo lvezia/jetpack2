@@ -5,7 +5,7 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Thu Jul  7 18:44:39 2016 Louis Vezia
-** Last update	Sat Jul 09 10:55:16 2016 Louis Vezia
+** Last update	Sat Jul 09 18:55:58 2016 Louis Vezia
 */
 
 #include "client.h"
@@ -47,10 +47,12 @@ int	 	communication(t_client *client)
 void		*play(t_client *client)
 {
   client->ready = 0;
+  client->start = 0;
   client->player.msg = NULL;
   client->player.id = 0;
   client->map.map = NULL;
   client->player.end = 0;
+  client->player.score = 0;
   communication(client);
   return (NULL);
 }
