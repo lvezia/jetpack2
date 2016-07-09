@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 14:59:50 2016 David Calo
-** Last update Sat Jul  9 14:34:18 2016 David Calo
+** Last update Sat Jul  9 15:51:44 2016 David Calo
 */
 
 #include "server.h"
@@ -21,8 +21,8 @@ int	server_read(t_server *s, size_t n)
   (void)n;
   if ((fd = client_accept(s->client->fd)) == FAIL)
     return (FAIL);
+  s->max_fd = (s->max_fd < fd ? fd : s->max_fd);
   return (list_add(s->client, list_new(fd, &client_read, &client_write)));
-  return (SUCCESS);
 }
 int	server_write(t_server *s, size_t n)
 {
