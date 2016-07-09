@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 11:17:29 2016 David Calo
-** Last update Sat Jul  9 14:41:42 2016 David Calo
+** Last update Sat Jul  9 21:00:37 2016 David Calo
 */
 
 #include "server.h"
@@ -18,25 +18,24 @@
 
 int	client_read(t_server *s, size_t n)
 {
-  char		*line;
-  size_t	len;
-  ssize_t	read;
-  FILE		*sock;
+  char		line[BUFFER_SIZE];
+  t_fd		*cl;
+  ssize_t	r;
 
-  if ((sock = fdopen(list_get(s->client, n)->fd, "r")) == NULL)
-    return (xperror("fdopen"));
-  line = NULL;
-  len = 0;
-  if ((read = getline(&line, &len, sock)) == -1)
+  cl = list_get(s->client, n);
+  memset(line, 0, BUFF_SIZE);
+  if ((r = read(cl->fd, line, BUFFER_SIZE)) < 1)
     {
       if (errno == EINVAL)
 	perror("getline");
-      perror("get_line");
       return (FAIL);
     }
-  line[read - 1] = 0;
-  printf("[%d] %s", list_get(s->client, n)->fd, line);
-  free(line);
+  line[r - 1] = 0;
+  if (cl->rbuf)
+    free(cl->rbuf);
+  cl->rbuf = strdup(line);
+  cl->wbuf = strdup("Received\n");
+  printf("[%d] \"%s\"\n", cl->fd, cl->rbuf);
   return (SUCCESS);
 }
 int	client_write(t_server *s, size_t n)
@@ -47,7 +46,11 @@ int	client_write(t_server *s, size_t n)
 }
 int	client_close(t_fd *cl, size_t n)
 {
-  close(list_get(cl, n)->fd);
+  int	fd;
+
+  fd = list_get(cl, n)->fd;
+  printf("[%d] disconnected\n", fd);
+  close(fd);
   list_remove(cl, n);
   return (SUCCESS);
 }
