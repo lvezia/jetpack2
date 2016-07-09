@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Thu Jul  7 11:06:54 2016 David Calo
-** Last update Sat Jul  9 12:12:14 2016 David Calo
+** Last update Sat Jul  9 20:45:30 2016 David Calo
 */
 
 #ifndef SERVER_H_
@@ -31,6 +31,8 @@ struct	s_fd
 {
   int		fd;
   t_buffer	buf;
+  char		*rbuf;
+  char		*wbuf;
   t_fd_fn	fn[2];
   t_fd		*next;
 };

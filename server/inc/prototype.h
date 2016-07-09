@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 21:15:55 2016 David Calo
-** Last update Sat Jul  9 11:57:22 2016 David Calo
+** Last update Sat Jul  9 19:54:08 2016 David Calo
 */
 
 #ifndef PROTOTYPE_H_
@@ -31,7 +31,7 @@ t_fd		*list_new(int, t_fd_fn, t_fd_fn);
 int		list_add(t_fd *, t_fd *);
 int		list_remove(t_fd *, size_t);
 size_t		list_size(t_fd *);
-t_fd const	*list_get(t_fd *, size_t);
+t_fd		*list_get(t_fd *, size_t);
 
 // select.c
 int	server_select(t_server *);
