@@ -5,7 +5,7 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Thu Jul  7 18:44:39 2016 Louis Vezia
-** Last update	Fri Jul 08 18:01:38 2016 Louis Vezia
+** Last update	Sat Jul 09 10:55:16 2016 Louis Vezia
 */
 
 #include "client.h"
@@ -21,38 +21,35 @@ void		set_value(t_client *client, fd_set *fd_read,
   tv->tv_usec = 50000;
 }
 
-void	 	communication(t_client *client)
+int	 	communication(t_client *client)
 {
   fd_set                fd_read;
   fd_set                fd_write;
   struct timeval        tv;
 
-  client->player.msg = NULL;
-  client->player.id = 0;
-  client->map.map = NULL;
-  client->ready = 0;
   set_value(client, &fd_read, &fd_write, &tv);
   usleep(100);
   while ((select((client->fd) + 1, &fd_read, &fd_write, NULL, &tv)) >= 0 &&
 	 client->player.end == 0)
     {
       if (FD_ISSET(client->fd, &fd_read))
-	stock_msg(client);
-      if (FD_ISSET(client->fd, &fd_write))
 	{
-	  if (client->player.id == 0)
-	    ask_id(client);
-	  if (client->map.map == NULL)
-	    ask_map(client);
-	  if (client->ready == 0)
-	    call_ready(client);
+	  if (stock_msg(client) == 1)
+	    return (0);
 	}
+      if (FD_ISSET(client->fd, &fd_write))
+	set_client(client);
       set_value(client, &fd_read, &fd_write, &tv);
     }
+  return (0);
 }
 
 void		*play(t_client *client)
 {
+  client->ready = 0;
+  client->player.msg = NULL;
+  client->player.id = 0;
+  client->map.map = NULL;
   client->player.end = 0;
   communication(client);
   return (NULL);
