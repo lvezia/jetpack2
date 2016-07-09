@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Thu Jul  7 10:26:40 2016 David Calo
-** Last update Sat Jul  9 11:56:04 2016 David Calo
+** Last update Sat Jul  9 14:40:54 2016 David Calo
 */
 
 // #include <stdio.h>
@@ -15,6 +15,7 @@
 #include <signal.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
 
 static t_server	s;
 
@@ -42,6 +43,7 @@ int	main(int ac, char const *av[])
   size_t	i;
   size_t	j;
 
+  memset(&sig, 0, sizeof(struct sigaction));
   sig.sa_handler = &signal_handler;
   if (sigaction(SIGINT, &sig, NULL) || sigaction(SIGPIPE, &sig, NULL))
     return (xperror("sigaction"));
@@ -50,7 +52,7 @@ int	main(int ac, char const *av[])
   arg_read(ac, av, &s);
   if (server_init(&s))
     return (84);
-    // process_map(&s);
+  // process_map(&s);
   while (1)
     {
       if (!server_select(&s))
@@ -59,7 +61,7 @@ int	main(int ac, char const *av[])
 	    if (FD_ISSET(list_get(s.client, i)->fd, &s.fds[j]) &&
 		list_get(s.client, i)->fn[j](&s, i))
 	      client_close(s.client, i--);
-    // update_game();
+      // update_game();
     }
   return (0);
 }

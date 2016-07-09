@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 14:59:50 2016 David Calo
-** Last update Sat Jul  9 11:20:46 2016 David Calo
+** Last update Sat Jul  9 14:34:18 2016 David Calo
 */
 
 #include "server.h"
@@ -18,6 +18,7 @@ int	server_read(t_server *s, size_t n)
 {
   int	fd;
 
+  (void)n;
   if ((fd = client_accept(s->client->fd)) == FAIL)
     return (FAIL);
   return (list_add(s->client, list_new(fd, &client_read, &client_write)));
@@ -26,6 +27,7 @@ int	server_read(t_server *s, size_t n)
 int	server_write(t_server *s, size_t n)
 {
   (void)s;
+  (void)n;
   write(1, "SERVER_WRITE\n", 13);
   return (SUCCESS);
 }
