@@ -5,7 +5,7 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Thu Jul  7 18:43:39 2016 Louis Vezia
-** Last update	Sat Jul 09 17:36:10 2016 Louis Vezia
+** Last update	Sat Jul 09 18:56:28 2016 Louis Vezia
 */
 
 #ifndef PLAYER_H_
@@ -29,6 +29,7 @@ int	stock_msg(t_client *);
 int	check_end(t_client *);
 int	communication(t_client *);
 void	handle_game(t_client *);
+void	get_start(t_client *);
 void	get_info_player(t_client *client);
 void	get_info_coins(t_client *client);
 void	refresh_player(t_client *, char **);

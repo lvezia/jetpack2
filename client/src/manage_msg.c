@@ -5,7 +5,7 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Fri Jul  8 11:55:32 2016 Louis Vezia
-** Last update	Sat Jul 09 18:36:08 2016 Louis Vezia
+** Last update	Sat Jul 09 18:56:14 2016 Louis Vezia
 */
 
 #include "client.h"
@@ -67,6 +67,7 @@ void		handle_game(t_client *client)
 {
   get_info_player(client);
   get_info_coins(client);
+  get_start(client);
 }
 
 int		check_end(t_client *client)

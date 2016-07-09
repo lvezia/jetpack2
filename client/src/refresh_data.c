@@ -5,7 +5,7 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Sat Jul  9 16:25:04 2016 Louis Vezia
-** Last update	Sat Jul 09 18:35:46 2016 Louis Vezia
+** Last update	Sat Jul 09 19:07:05 2016 Louis Vezia
 */
 
 #include "client.h"
@@ -32,5 +32,17 @@ void	refresh_coins(t_client *client, char **tab)
       y = atoi(tab[3]);
       pos = (x * y) + atoi(tab[3]);
       client->map.map[pos] = '_';
+    }
+}
+
+void	get_start(t_client *client)
+{
+  char	*msg;
+
+  msg = client->player.msg;
+  if (strstr(msg, "START") != 0)
+    {
+      client->start = 1;
+      printf("%s\n", "AHSALAMAECOUM");
     }
 }

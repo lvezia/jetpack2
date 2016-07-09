@@ -5,7 +5,7 @@
 ** Login   <vezia_l@epitech.net>
 **
 ** Started on  Thu Jul  7 11:16:32 2016 louis vezia
-** Last update	Fri Jul 08 16:27:08 2016 Louis Vezia
+** Last update	Sat Jul 09 18:55:42 2016 Louis Vezia
 */
 
 #ifndef CLIENT_H_
@@ -31,6 +31,7 @@ typedef struct	s_client
   int		fd;
   char		*ip;
   int		ready;
+  int		start;
   t_player	player;
   t_map		map;
 }		t_client;
