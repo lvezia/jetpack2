@@ -6,6 +6,7 @@
 **
 ** Started on  Fri Jul  8 21:15:55 2016 David Calo
 ** Last update Fri Jul  8 21:22:22 2016 David Calo
+** Last update Sat Jul  9 11:53:50 2016 David Calo
 */
 
 #ifndef PROTOTYPE_H_
@@ -18,8 +19,8 @@ int	arg_gravity(char const *, t_server *);
 int	arg_map(char const *, t_server *);
 
 // client.c
-int	client_read(t_server *);
-int	client_write(t_server *);
+int	client_read(t_server *, size_t);
+int	client_write(t_server *, size_t);
 int	client_accept(int);
 int	client_close(t_fd *, size_t);
 
@@ -37,8 +38,8 @@ t_fd const	*list_get(t_fd *, size_t);
 int	server_select(t_server *);
 
 // server.c
-int	server_read(t_server *);
-int	server_write(t_server *);
+int	server_read(t_server *, size_t);
+int	server_write(t_server *, size_t);
 int	server_init(t_server *);
 
 // socket.c

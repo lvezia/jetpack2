@@ -21,7 +21,7 @@ struct	s_fd
 {
   int		fd;
   t_fd_fn	fn[2];
-  struct s_fd	*next;
+  t_fd		*next;
 };
 
 struct	s_server

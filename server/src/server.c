@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 14:59:50 2016 David Calo
-** Last update Fri Jul  8 21:08:40 2016 David Calo
+** Last update Sat Jul  9 11:20:46 2016 David Calo
 */
 
 #include "server.h"
@@ -14,7 +14,7 @@
 #include <unistd.h>
 #include <stdio.h>
 
-int	server_read(t_server *s)
+int	server_read(t_server *s, size_t n)
 {
   int	fd;
 
@@ -23,7 +23,7 @@ int	server_read(t_server *s)
   return (list_add(s->client, list_new(fd, &client_read, &client_write)));
   return (SUCCESS);
 }
-int	server_write(t_server *s)
+int	server_write(t_server *s, size_t n)
 {
   (void)s;
   write(1, "SERVER_WRITE\n", 13);

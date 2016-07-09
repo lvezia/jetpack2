@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 11:17:29 2016 David Calo
-** Last update Fri Jul  8 19:15:18 2016 David Calo
+** Last update Sat Jul  9 11:37:00 2016 David Calo
 */
 
 #include "server.h"
@@ -14,12 +14,30 @@
 #include <sys/socket.h>
 #include <unistd.h>
 
-int	client_read(t_server *s)
+int	client_read(t_server *s, size_t n)
 {
-  (void)s;
+  char		*line;
+  size_t	n;
+  ssize_t	read;
+  FILE		*sock;
+
+  if (fdopen(list_get(s->client, n)->fd, "r") == NULL)
+    return (xperror("fdopen"));
+  line = NULL;
+  n = 0;
+  if ((read = getline(&line, &n, sock) == -1)
+    {
+      if (errno == EINVAL)
+	perror("getline");
+      perror("get_line")
+      return (FAIL);
+    }
+  cmd[read - 1] = 0;
+  lex_parse(client, cmd);
+  free(cmd);
   return (SUCCESS);
 }
-int	client_write(t_server *s)
+int	client_write(t_server *s, size_t n)
 {
   (void)s;
   return (SUCCESS);

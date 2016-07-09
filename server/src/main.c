@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Thu Jul  7 10:26:40 2016 David Calo
-** Last update Fri Jul  8 21:14:45 2016 David Calo
+** Last update Sat Jul  9 11:56:04 2016 David Calo
 */
 
 // #include <stdio.h>
@@ -48,17 +48,17 @@ int	main(int ac, char const *av[])
   if (atexit(server_free))
     return (xputerror("atexit: failed"));
   arg_read(ac, av, &s);
-  // process_map(&s);
   if (server_init(&s))
     return (84);
+    // process_map(&s);
   while (1)
     {
-      server_select(&s);
-      for (i = 0; i < list_size(s.client); i++)
-	for (j = 0; j < 2; j++)
-	  if (FD_ISSET(list_get(s.client, i)->fd, &s.fds[j]) &&
-	      list_get(s.client, i)->fn[j](&s))
-	    client_close(s.client, i--);
+      if (!server_select(&s))
+	for (i = 0; i < list_size(s.client); i++)
+	  for (j = 0; j < 2; j++)
+	    if (FD_ISSET(list_get(s.client, i)->fd, &s.fds[j]) &&
+		list_get(s.client, i)->fn[j](&s, i))
+	      client_close(s.client, i--);
     // update_game();
     }
   return (0);
