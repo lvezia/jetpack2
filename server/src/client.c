@@ -40,8 +40,16 @@ int	client_read(t_server *s, size_t n)
 }
 int	client_write(t_server *s, size_t n)
 {
-  (void)s;
-  (void)n;
+  t_fd	*cl;
+
+  cl = list_get(s->client, n);
+  if (cl->wbuf)
+    {
+      if (write(cl->fd, cl->wbuf, strlen(cl->wbuf)) < 1)
+	return (errno != ECONNRESET ? xperror("write") : FAIL);
+      free(cl->wbuf);
+      cl->wbuf = NULL;
+    }
   return (SUCCESS);
 }
 int	client_close(t_fd *cl, size_t n)
