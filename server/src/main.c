@@ -39,7 +39,6 @@ void	server_free()
 int	main(int ac, char const *av[])
 {
   struct sigaction	sig;
-  int		run;
   size_t	i;
   size_t	j;
 
@@ -52,8 +51,7 @@ int	main(int ac, char const *av[])
   // process_map(&s);
   if (server_init(&s))
     return (84);
-  run = 1;
-  while (run)
+  while (1)
     {
       server_select(&s);
       for (i = 0; i < list_size(s.client); i++)
@@ -61,7 +59,7 @@ int	main(int ac, char const *av[])
 	  if (FD_ISSET(list_get(s.client, i)->fd, &s.fds[j]) &&
 	      list_get(s.client, i)->fn[j](&s))
 	    client_close(s.client, i--);
-      // run = update_game();
+    // update_game();
     }
   return (0);
 }
