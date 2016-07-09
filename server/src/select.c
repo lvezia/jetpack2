@@ -5,12 +5,13 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Thu Jul  7 18:29:27 2016 David Calo
-** Last update Sat Jul  9 14:38:27 2016 David Calo
+** Last update Sat Jul  9 21:20:22 2016 David Calo
 */
 
 #include "server.h"
 
 #include <sys/select.h>
+#include <unistd.h>
 
 static int	set_fds_tv(t_server *s, struct timeval *tv)
 {
@@ -33,6 +34,7 @@ int	server_select(t_server *s)
   struct timeval	tv;
 
   set_fds_tv(s, &tv);
+  usleep(1);
   if (select(s->max_fd + 1, &s->fds[0], &s->fds[1], NULL, &tv) == -1)
     return (xperror("select"));
   return (SUCCESS);

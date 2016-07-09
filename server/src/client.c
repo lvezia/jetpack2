@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 11:17:29 2016 David Calo
-** Last update Sat Jul  9 21:00:37 2016 David Calo
+** Last update Sat Jul  9 21:21:08 2016 David Calo
 */
 
 #include "server.h"
@@ -15,6 +15,7 @@
 #include <unistd.h>
 #include <errno.h>
 #include <stdlib.h>
+#include <string.h>
 
 int	client_read(t_server *s, size_t n)
 {
@@ -23,7 +24,7 @@ int	client_read(t_server *s, size_t n)
   ssize_t	r;
 
   cl = list_get(s->client, n);
-  memset(line, 0, BUFF_SIZE);
+  memset(line, 0, BUFFER_SIZE);
   if ((r = read(cl->fd, line, BUFFER_SIZE)) < 1)
     {
       if (errno == EINVAL)
