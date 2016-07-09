@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Thu Jul  7 11:06:54 2016 David Calo
-** Last update Fri Jul  8 21:18:33 2016 David Calo
+** Last update Sat Jul  9 12:12:14 2016 David Calo
 */
 
 #ifndef SERVER_H_
@@ -17,9 +17,20 @@
 # include "types.h"
 # include "macros.h"
 
+# define BUFFER_SIZE 4096
+
+struct	s_buffer
+{
+  char		buffer[BUFFER_SIZE];
+  size_t	head;
+  size_t	tail;
+  size_t	writen;
+};
+
 struct	s_fd
 {
   int		fd;
+  t_buffer	buf;
   t_fd_fn	fn[2];
   t_fd		*next;
 };

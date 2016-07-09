@@ -5,8 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 21:15:55 2016 David Calo
-** Last update Fri Jul  8 21:22:22 2016 David Calo
-** Last update Sat Jul  9 11:53:50 2016 David Calo
+** Last update Sat Jul  9 11:57:22 2016 David Calo
 */
 
 #ifndef PROTOTYPE_H_
