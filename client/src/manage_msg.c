@@ -5,10 +5,69 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Fri Jul  8 11:55:32 2016 Louis Vezia
-** Last update	Sat Jul 09 11:57:32 2016 Louis Vezia
+** Last update	Sat Jul 09 18:36:08 2016 Louis Vezia
 */
 
 #include "client.h"
+
+void		get_info_player(t_client *client)
+{
+  int		i;
+  char		*tab[5];
+  char		*msg;
+
+  i = 0;
+  msg = client->player.msg;
+  if (strstr(msg, "PLAYER") != 0)
+    {
+      tab[i] = strtok(msg, " ");
+      i++;
+      while (i < 5)
+	{
+	  if (i != 4)
+	    {
+	      tab[i] = strtok(NULL, " ");
+	    }
+	  else
+	    tab[i] = strtok(NULL, "\n");
+	  i++;
+	}
+      refresh_player(client, tab);
+    }
+}
+
+void		get_info_coins(t_client *client)
+{
+  int		i;
+  char		*tab[4];
+  char		*msg;
+
+  i = 0;
+  msg = client->player.msg;
+  if (strstr(msg, "COIN") != 0)
+    {
+      tab[i] = strtok(msg, " ");
+      i++;
+      while (i < 4)
+	{
+	  if (i != 3)
+	    {
+	      tab[i] = strtok(NULL, " ");
+	    }
+	  else
+	    tab[i] = strtok(NULL, "\n");
+	  printf("%s\n", tab[i]);
+	  i++;
+	}
+      refresh_coins(client, tab);
+    }
+}
+
+void		handle_game(t_client *client)
+{
+  get_info_player(client);
+  get_info_coins(client);
+}
 
 int		check_end(t_client *client)
 {
@@ -52,5 +111,6 @@ int		stock_msg(t_client *client)
 	break;
     }
   client->player.msg = buffer;
+  handle_game(client);
   return (check_end(client));
 }

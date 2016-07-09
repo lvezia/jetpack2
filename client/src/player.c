@@ -5,7 +5,7 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Thu Jul  7 18:44:39 2016 Louis Vezia
-** Last update	Sat Jul 09 10:55:16 2016 Louis Vezia
+** Last update	Sat Jul 09 18:32:11 2016 Louis Vezia
 */
 
 #include "client.h"
@@ -51,6 +51,7 @@ void		*play(t_client *client)
   client->player.id = 0;
   client->map.map = NULL;
   client->player.end = 0;
+  client->player.score = 0;
   communication(client);
   return (NULL);
 }
