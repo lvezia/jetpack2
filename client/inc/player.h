@@ -5,7 +5,7 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Thu Jul  7 18:43:39 2016 Louis Vezia
-** Last update	Sat Jul 09 18:56:28 2016 Louis Vezia
+** Last update	Sun Jul 10 16:23:14 2016 Louis Vezia
 */
 
 #ifndef PLAYER_H_
@@ -23,6 +23,7 @@ typedef struct	s_player
   int		score;
   int		end;
   char		*msg;
+  pthread_mutex_t       mutex;
 }		t_player;
 
 int	stock_msg(t_client *);
@@ -34,7 +35,6 @@ void	get_info_player(t_client *client);
 void	get_info_coins(t_client *client);
 void	refresh_player(t_client *, char **);
 void	refresh_coins(t_client *, char **);
-void	*play(t_client *client);
 void	set_value(t_client *, fd_set *, fd_set *, struct timeval *);
 void	set_client(t_client *);
 void	ask_id(t_client *);

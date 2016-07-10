@@ -5,25 +5,26 @@
 ## Login   <calo_d@epitech.eu>
 ##
 ## Started on  Thu Jul  7 10:22:07 2016 David Calo
-## Last update Sat Jul  9 16:54:36 2016 louis vezia
+## Last update Sun Jul 10 16:27:05 2016 louis vezia
 ##
 
 NAME	= clientJ2T3
 
-SRC	= main.c	\
-	  pars_arg.c	\
-	  init.c	\
-	  run.c		\
-	  graphique.c	\
-	  player.c	\
-	  manage_msg.c	\
-	  set_game.c	\
-	  manage_msg.c	\
-	  refresh_data.c\
+SRC	= main.c		\
+	  pars_arg.c		\
+	  init.c		\
+	  run.c			\
+	  graphique.c		\
+	  communication.c	\
+	  manage_msg.c		\
+	  set_client.c		\
+	  manage_msg.c		\
+	  refresh_data.c	\
+	  play.c		\
 
 CFLAGS	= -Wall -Wextra -Werror -g
 
-LDFLAGS	= -I./inc/ -lpthread
+LDFLAGS	= -I./inc/ -lpthread -lSDL
 
 SRC_DIR	= src/
 

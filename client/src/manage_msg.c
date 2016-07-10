@@ -5,7 +5,7 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Fri Jul  8 11:55:32 2016 Louis Vezia
-** Last update	Sat Jul 09 18:56:14 2016 Louis Vezia
+** Last update	Sat Jul 09 19:25:12 2016 Louis Vezia
 */
 
 #include "client.h"
@@ -81,6 +81,7 @@ int		check_end(t_client *client)
   msg = client->player.msg;
   if ((check = strstr(client->player.msg, "FINISH")) != 0)
     {
+      client->player.end = 1;
       while (msg[i] && msg[i] != ' ')
 	i++;
       tmp_id = atoi(&msg[i]);

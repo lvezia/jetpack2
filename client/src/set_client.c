@@ -5,7 +5,7 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Fri Jul  8 16:20:12 2016 Louis Vezia
-** Last update	Sat Jul 09 18:32:46 2016 Louis Vezia
+** Last update	Sun Jul 10 16:30:53 2016 Louis Vezia
 */
 
 #include "client.h"
@@ -69,9 +69,9 @@ void		ask_map(t_client *client)
       i++;
     }
   client->map.sizeX = atoi(tab[1]);
-  printf("Mon size X : %d\n", client->map.sizeX);
+  printf("Size X : %d\n", client->map.sizeX);
   client->map.sizeY = atoi(tab[2]);
-  printf("Mon size Y : %d\n", client->map.sizeY);
+  printf("Size Y : %d\n", client->map.sizeY);
   client->map.map = strdup(tab[3]);
   printf("MAP : %s\n", client->map.map);
 }
@@ -81,5 +81,6 @@ void		call_ready(t_client *client)
   write (client->fd, "READY\n", 6);
   client->ready = 1;
   printf("%s\n", "READY");
+  pthread_mutex_unlock(&client->status);
   return;
 }

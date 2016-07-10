@@ -5,7 +5,7 @@
 ** Login   <vezia_l@epitech.net>
 **
 ** Started on  Thu Jul  7 11:16:32 2016 louis vezia
-** Last update	Sat Jul 09 18:55:42 2016 Louis Vezia
+** Last update	Sun Jul 10 16:18:55 2016 Louis Vezia
 */
 
 #ifndef CLIENT_H_
@@ -32,13 +32,15 @@ typedef struct	s_client
   char		*ip;
   int		ready;
   int		start;
+  pthread_mutex_t       status;
   t_player	player;
   t_map		map;
 }		t_client;
 
+void	init_data(t_client *);
 int	run(t_client *);
 int	my_put_error(char *);
 int     init_socket(t_client *);
-void	pars_arg(int, char **, t_client *);
+int	pars_arg(int, char **, t_client *);
 
 #endif /* !CLIENT_H_ */

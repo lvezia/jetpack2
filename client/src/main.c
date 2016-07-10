@@ -5,7 +5,7 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Thu Jul  7 11:09:35 2016 Louis Vezia
-** Last update	Sat Jul 09 10:29:41 2016 Louis Vezia
+** Last update	Sun Jul 10 10:16:56 2016 Louis Vezia
 */
 
 #include "client.h"
@@ -23,7 +23,8 @@ int		main(int ac, char **av)
 
   if (ac != 5)
     return (my_put_error("USAGE : ./clientJ2T3 -h <ip> -p <port>"));
-  pars_arg(ac, av, &client);
+  if (pars_arg(ac, av, &client) == 84)
+    return (84);
   if (init_socket(&client) == 84)
     return (84);
   run(&client);

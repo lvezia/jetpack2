@@ -5,16 +5,17 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Thu Jul  7 14:22:46 2016 Louis Vezia
-** Last update	Thu Jul 07 17:16:12 2016 Louis Vezia
+** Last update	Sun Jul 10 10:16:26 2016 Louis Vezia
 */
 
 #include "client.h"
 
-void    pars_arg(int ac, char **av, t_client *client)
+int	pars_arg(int ac, char **av, t_client *client)
 {
-  int   pos;
+  int	pos;
 
   pos = 0;
+  client->port = 0;
   while (pos < ac)
     {
       if (strcmp(av[pos], "-p") == 0 && atoi(av[pos + 1]) > 1)
@@ -28,4 +29,7 @@ void    pars_arg(int ac, char **av, t_client *client)
 	}
       pos++;
     }
+  if (client->port == 0)
+    return (my_put_error("USAGE : ./clientJ2T3 -h <ip> -p <port>"));
+  return (0);
 }
