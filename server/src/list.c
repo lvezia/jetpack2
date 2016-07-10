@@ -5,12 +5,13 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 16:25:27 2016 David Calo
-** Last update Sat Jul  9 20:47:31 2016 David Calo
+** Last update Sun Jul 10 18:01:43 2016 David Calo
 */
 
 #include "server.h"
 
 #include <stdlib.h>
+#include <string.h>
 
 t_fd		*list_new(int fd, t_fd_fn fn_read, t_fd_fn fn_write)
 {
@@ -21,8 +22,8 @@ t_fd		*list_new(int fd, t_fd_fn fn_read, t_fd_fn fn_write)
   new->fn[0] = fn_read;
   new->fn[1] = fn_write;
   new->next = NULL;
-  new->rbuf = NULL;
-  new->wbuf = NULL;
+  memset(new->rbuf, 0, BUFFER_SIZE);
+  memset(new->wbuf, 0, BUFFER_SIZE);
   return (new);
 }
 
@@ -51,10 +52,6 @@ int	list_remove(t_fd *l, size_t n)
   f = t->next;
   if (t->next)
   t->next = t->next->next;
-  if (f->rbuf)
-    free(f->rbuf);
-  if (f->wbuf)
-    free(f->wbuf);
   free(f);
   return (SUCCESS);
 }

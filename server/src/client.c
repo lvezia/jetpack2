@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 11:17:29 2016 David Calo
-** Last update Sun Jul 10 17:50:08 2016 David Calo
+** Last update Sun Jul 10 18:58:27 2016 David Calo
 */
 
 #include "server.h"
@@ -32,34 +32,32 @@ int	client_read(t_server *s, size_t n)
       return (FAIL);
     }
   line[r - 1] = 0;
-  if (cl->rbuf)
-    {
-      free(cl->rbuf);
-      cl->rbuf = NULL;
-    }
+  if (*cl->rbuf)
+    memset(cl->rbuf, 0, strlen(cl->rbuf));
   if (!parser(line))
     {
-      cl->rbuf = strdup(line);
-      cl->wbuf = strdup("Received");
+      strcpy(cl->rbuf, line);
+      strcpy(cl->wbuf, "Received");
+      printf("[%d] \"%s\"\n", cl->fd, cl->rbuf);
     }
-  printf("[%d] \"%s\"\n", cl->fd, cl->rbuf);
   return (SUCCESS);
 }
+
 int	client_write(t_server *s, size_t n)
 {
   t_fd	*cl;
 
   cl = list_get(s->client, n);
-  if (cl->wbuf)
+  if (*cl->wbuf)
     {
       if (write(cl->fd, cl->wbuf, strlen(cl->wbuf)) < 1 ||
 	  write(cl->fd, "\n", 1) < 1)
 	return (errno != ECONNRESET ? xperror("write") : FAIL);
-      free(cl->wbuf);
-      cl->wbuf = NULL;
+      memset(cl->wbuf, 0, strlen(cl->wbuf));
     }
   return (SUCCESS);
 }
+
 int	client_close(t_fd *cl, size_t n)
 {
   int	fd;
