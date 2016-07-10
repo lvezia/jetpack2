@@ -17,8 +17,6 @@
 # include "types.h"
 # include "macros.h"
 
-# define BUFFER_SIZE 4096
-
 struct	s_buffer
 {
   char		buffer[BUFFER_SIZE];

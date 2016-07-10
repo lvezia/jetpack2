@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 21:15:55 2016 David Calo
-** Last update Sat Jul  9 11:50:47 2016 David Calo
+** Last update Sun Jul 10 18:51:58 2016 David Calo
 */
 
 #ifndef MACROS_H_
@@ -17,6 +17,7 @@
 # define DEFAULT_GRAVITY -9.81
 
 # define LISTEN_MAX_CLIENT 8
+# define BUFFER_SIZE 4096
 
 # define TABLEN(x) (sizeof(x) / sizeof(*x))
 
