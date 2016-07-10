@@ -5,13 +5,11 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Thu Jul  7 14:58:19 2016 David Calo
-** Last update Fri Jul  8 21:10:45 2016 David Calo
+** Last update Sun Jul 10 18:36:27 2016 David Calo
 */
 
-#include <stdio.h>
-#include <ctype.h>
-#include <stdlib.h>
 #include <string.h>
+#include <stdlib.h>
 
 #include "server.h"
 
@@ -40,52 +38,23 @@ int		arg_read(int ac, char const *av[], t_server *s)
 
 int		arg_port(char const *arg, t_server *s)
 {
-  size_t	i;
-
-  if (!arg)
+  if (check_int(arg))
     return (FAIL);
-  for (i = 0; arg[i]; i++)
-    if (!isdigit(arg[i]))
-      return (FAIL);
   s->port = atoi(arg);
   return (SUCCESS);
 }
 
 int		arg_gravity(char const *arg, t_server *s)
 {
-  size_t	i;
-
-  if (!arg)
+  if (check_float(arg))
     return (FAIL);
-  for (i = 0; arg[i]; i++)
-    if (!isdigit(arg[i]) && arg[i] != '.')
-      return (FAIL);
   s->gravity = atof(arg);
   return (SUCCESS);
 }
 
 int	arg_map(char const *arg, t_server *s)
 {
-  FILE	*file;
-  char	*buf;
-  long	len;
-
-  if (!arg)
-    return (FAIL);
-  if ((file = fopen(arg, "r")) == NULL)
-    return (FAIL);
-  if (fseek(file, 0, SEEK_END) ||
-      (len = ftell(file)) == -1 ||
-      fseek(file, 0, SEEK_SET) ||
-      (buf = malloc(len)) == NULL ||
-      !fread(buf, 1, len, file))
-    {
-      if (fclose(file))
-	return (FAIL);
-      return (FAIL);
-    }
-  s->map = buf;
-  if (fclose(file))
-    return (FAIL);
+  if ((s->map = read_file(arg)) == NULL)
+    return (xputerror("read_file: Failed"));
   return (SUCCESS);
 }

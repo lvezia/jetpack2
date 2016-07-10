@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 21:15:55 2016 David Calo
-** Last update Sun Jul 10 17:34:03 2016 David Calo
+** Last update Sun Jul 10 18:35:25 2016 David Calo
 */
 
 #ifndef PROTOTYPE_H_
@@ -52,5 +52,10 @@ int	bind_listen_socket(int, PORT);
 int	xputerror(char const *);
 int	xperror(char const *);
 void	printlog(int, char const *);
+char	*read_file(char const *);
+
+// tools_check.c
+int	check_int(char const *);
+int	check_float(char const *);
 
 #endif
