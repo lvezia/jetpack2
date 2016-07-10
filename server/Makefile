@@ -5,7 +5,7 @@
 ## Login   <calo_d@epitech.eu>
 ##
 ## Started on  Thu Jul  7 10:22:07 2016 David Calo
-## Last update Sun Jul 10 18:51:13 2016 David Calo
+## Last update Sun Jul 10 19:25:45 2016 David Calo
 ##
 
 NAME	= serverJ2T3
@@ -13,7 +13,7 @@ NAME	= serverJ2T3
 SRC	= main.c \
 	argument.c \
 	client.c \
-	game_map.c \
+	game.c \
 	list.c \
 	parser.c \
 	select.c \
