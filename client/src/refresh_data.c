@@ -5,7 +5,7 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Sat Jul  9 16:25:04 2016 Louis Vezia
-** Last update	Mon Jul 11 16:08:52 2016 Louis Vezia
+** Last update	Mon Jul 11 16:10:28 2016 Louis Vezia
 */
 
 #include "client.h"
@@ -42,7 +42,6 @@ void	refresh_coins(t_client *client, char **tab)
   pthread_mutex_lock(&client->player.mutex);
   client->map.map[pos] = '_';
   pthread_mutex_unlock(&client->player.mutex);
-    }
 }
 
 void	get_start(t_client *client)
