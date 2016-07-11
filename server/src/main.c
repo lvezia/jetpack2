@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Thu Jul  7 10:26:40 2016 David Calo
-** Last update Sun Jul 10 19:07:04 2016 David Calo
+** Last update Mon Jul 11 09:25:11 2016 David Calo
 */
 
 // #include <stdio.h>
@@ -49,8 +49,8 @@ int	main(int ac, char const *av[])
     return (xperror("sigaction"));
   if (atexit(server_free))
     return (xputerror("atexit: failed"));
-  arg_read(ac, av, &s);
-  if (server_init(&s))
+  if (arg_read(ac, av, &s) ||
+      server_init(&s))
     return (84);
   process_game(&s);
   while (1)
