@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Thu Jul  7 14:58:19 2016 David Calo
-** Last update Mon Jul 11 09:24:38 2016 David Calo
+** Last update Mon Jul 11 11:59:39 2016 David Calo
 */
 
 #include <string.h>
@@ -20,8 +20,8 @@ int		arg_read(int ac, char const *av[], t_server *s)
   int		i;
   size_t	j;
 
-  s->port = DEFAULT_PORT;
-  s->gravity = DEFAULT_GRAVITY;
+  s->port = 0;
+  s->gravity = 0;
   s->map = NULL;
   fn[0] = &arg_port;
   fn[1] = &arg_gravity;
@@ -33,6 +33,8 @@ int		arg_read(int ac, char const *av[], t_server *s)
       if (strcmp(args[j], av[i]) == 0)
 	if (fn[j](av[i + 1], s))
 	  return (xputerror("Invalid argument"));
+  if (!s->port || !s->gravity || s->map == NULL)
+    return (xputerror("Invalid argument"));
   return (SUCCESS);
 }
 

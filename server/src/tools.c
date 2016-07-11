@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Thu Jul  7 19:01:33 2016 David Calo
-** Last update Sun Jul 10 18:23:36 2016 David Calo
+** Last update Mon Jul 11 12:10:33 2016 David Calo
 */
 
 #include "server.h"
@@ -16,6 +16,10 @@
 #include <string.h>
 #include <errno.h>
 
+int	xstrlenchr(char const *s, char c)
+{
+  return ((*s && *s != c) ? xstrlenchr(++s, c) + 1 : 0);
+}
 
 int	xputerror(char const *msg)
 {
@@ -50,7 +54,7 @@ char	*read_file(char const *name)
   if (fseek(file, 0, SEEK_END) ||
       (len = ftell(file)) == -1 ||
       fseek(file, 0, SEEK_SET) ||
-      (buf = malloc(len)) == NULL ||
+      (buf = malloc(len + 1)) == NULL ||
       !fread(buf, 1, len, file))
     {
       free(buf);
@@ -58,6 +62,7 @@ char	*read_file(char const *name)
 	return (NULL);
       return (NULL);
     }
+  buf[len] = '\0';
   if (fclose(file))
     {
       free(buf);

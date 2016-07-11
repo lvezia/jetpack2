@@ -5,18 +5,32 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 09:28:59 2016 David Calo
-** Last update Mon Jul 11 10:31:42 2016 David Calo
+** Last update Mon Jul 11 12:15:26 2016 David Calo
 */
 
 #include "server.h"
 
-void	process_game(t_server const *s)
+#include <stdio.h>
+
+int	count_lines(char const *s)
 {
-  
-  (void)s;
+  return (*s ? count_lines(s + 1) + (*s == '\n') : 0);
 }
 
-void	update_game(t_server const *s)
+int	process_game(t_server const *s)
+{
+  int	mx;
+  int	my;
+
+  if ((mx = xstrlenchr(s->map, '\n')) == 0)
+    return (FAIL);
+  my = count_lines(s->map);
+  printf("x: %d, y: %d\n", mx, my);
+  return (SUCCESS);
+}
+
+int	update_game(t_server const *s)
 {
   (void)s;
+  return (SUCCESS);
 }
