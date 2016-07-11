@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 21:15:55 2016 David Calo
-** Last update Mon Jul 11 12:01:42 2016 David Calo
+** Last update Mon Jul 11 14:21:19 2016 David Calo
 */
 
 #ifndef PROTOTYPE_H_
@@ -24,7 +24,7 @@ int	client_accept(int);
 int	client_close(t_fd *, size_t);
 
 // game.c
-int	process_game(t_server const *);
+int	process_game(t_game *);
 int	update_game(t_server const *);
 
 // list.c

@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Thu Jul  7 10:26:40 2016 David Calo
-** Last update Mon Jul 11 10:27:56 2016 David Calo
+** Last update Mon Jul 11 14:23:36 2016 David Calo
 */
 
 // #include <stdio.h>
@@ -34,7 +34,7 @@ void	server_free()
     close(list_get(s.client, i)->fd);
   close(s.client->fd);
   free(s.client);
-  free(s.map);
+  free(s.game.map);
 }
 
 int	main(int ac, char const *av[])
@@ -52,7 +52,7 @@ int	main(int ac, char const *av[])
   if (arg_read(ac, av, &s) ||
       server_init(&s))
     return (84);
-  process_game(&s);
+  process_game(&s.game);
   while (1)
     {
       if (!server_select(&s))

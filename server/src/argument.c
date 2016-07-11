@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Thu Jul  7 14:58:19 2016 David Calo
-** Last update Mon Jul 11 11:59:39 2016 David Calo
+** Last update Mon Jul 11 14:06:55 2016 David Calo
 */
 
 #include <string.h>
@@ -21,8 +21,8 @@ int		arg_read(int ac, char const *av[], t_server *s)
   size_t	j;
 
   s->port = 0;
-  s->gravity = 0;
-  s->map = NULL;
+  s->game.gravity = 0;
+  s->game.map = NULL;
   fn[0] = &arg_port;
   fn[1] = &arg_gravity;
   fn[2] = &arg_map;
@@ -33,7 +33,7 @@ int		arg_read(int ac, char const *av[], t_server *s)
       if (strcmp(args[j], av[i]) == 0)
 	if (fn[j](av[i + 1], s))
 	  return (xputerror("Invalid argument"));
-  if (!s->port || !s->gravity || s->map == NULL)
+  if (!s->port || !s->game.gravity || s->game.map == NULL)
     return (xputerror("Invalid argument"));
   return (SUCCESS);
 }
@@ -50,13 +50,13 @@ int		arg_gravity(char const *arg, t_server *s)
 {
   if (check_float(arg))
     return (FAIL);
-  s->gravity = atof(arg);
+  s->game.gravity = atof(arg);
   return (SUCCESS);
 }
 
 int	arg_map(char const *arg, t_server *s)
 {
-  if ((s->map = read_file(arg)) == NULL)
+  if ((s->game.map = read_file(arg)) == NULL)
     return (xputerror("read_file: Failed"));
   return (SUCCESS);
 }
