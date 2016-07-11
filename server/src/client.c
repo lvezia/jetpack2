@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 11:17:29 2016 David Calo
-** Last update Mon Jul 11 10:17:49 2016 David Calo
+** Last update Mon Jul 11 10:20:54 2016 David Calo
 */
 
 #include "server.h"
@@ -65,7 +65,8 @@ int	client_close(t_fd *cl, size_t n)
   if ((fd = list_get(cl, n)->fd) <= 3)
     return (SUCCESS);
   printf("[%d] disconnected\n", fd);
-  close(fd);
+  if (close(fd))
+    return (xperror("close"));
   list_remove(cl, n);
   return (SUCCESS);
 }

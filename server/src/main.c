@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Thu Jul  7 10:26:40 2016 David Calo
-** Last update Mon Jul 11 09:25:11 2016 David Calo
+** Last update Mon Jul 11 10:27:56 2016 David Calo
 */
 
 // #include <stdio.h>
@@ -61,7 +61,7 @@ int	main(int ac, char const *av[])
 	    if (FD_ISSET(list_get(s.client, i)->fd, &s.fds[j]) &&
 		list_get(s.client, i)->fn[j](&s, i))
 	      client_close(s.client, i--);
-      // update_game();
+      update_game(&s);
     }
   return (0);
 }
