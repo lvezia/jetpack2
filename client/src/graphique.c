@@ -5,7 +5,7 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Thu Jul  7 18:46:09 2016 Louis Vezia
-** Last update	Sun Jul 10 17:45:06 2016 Louis Vezia
+** Last update	Mon Jul 11 15:46:51 2016 Louis Vezia
 */
 
 #include "client.h"
@@ -21,10 +21,9 @@ void		set_window(t_client *client)
 void		*graphique(void *arg)
 {
   t_client	*client;
-  SDL_Surface	*ecran = NULL;
-  SDL_Surface	*rectangle = NULL;
-  SDL_Rect	position;
+  t_window	window;
 
+  window.ecran = NULL;
   client = (t_client *)arg;
   pthread_mutex_lock(&client->status);
   pthread_mutex_unlock(&client->status);
@@ -33,19 +32,14 @@ void		*graphique(void *arg)
       printf("%s\n", "Error SDL Init");
   else
     {
-      position.x = client->map.windowX / 2 - 110;
-      position.y = client->map.windowY / 2 - 90;
-      ecran = SDL_SetVideoMode(client->map.windowX, client->map.windowY,
+      window.ecran = SDL_SetVideoMode(client->map.windowX, client->map.windowY,
 			       32, SDL_HWSURFACE | SDL_DOUBLEBUF);
+      SDL_EnableKeyRepeat(10, 10);
       SDL_WM_SetCaption("jetpack2Tek3", NULL);
-      rectangle = SDL_CreateRGBSurface(SDL_HWSURFACE, 220, 180, 32, 0, 0, 0, 0);
-      SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 51, 0, 153));
-      SDL_FillRect(rectangle, NULL, SDL_MapRGB(ecran->format, 153, 0, 51));
-      SDL_BlitSurface(rectangle, NULL, ecran, &position);
-      SDL_Flip(ecran);
-      play(client);
+      SDL_FillRect(window.ecran, NULL, SDL_MapRGB(window.ecran->format,
+						  51, 0, 153));
+      play(client, &window);
     }
-  SDL_FreeSurface(rectangle);
   SDL_Quit();
   return (NULL);
 }

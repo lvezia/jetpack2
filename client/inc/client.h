@@ -5,7 +5,7 @@
 ** Login   <vezia_l@epitech.net>
 **
 ** Started on  Thu Jul  7 11:16:32 2016 louis vezia
-** Last update	Sun Jul 10 16:18:55 2016 Louis Vezia
+** Last update	Mon Jul 11 15:45:46 2016 Louis Vezia
 */
 
 #ifndef CLIENT_H_
@@ -24,6 +24,7 @@
 
 # include "player.h"
 # include "graphique.h"
+# include "window.h"
 
 typedef struct	s_client
 {

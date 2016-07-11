@@ -5,7 +5,7 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Fri Jul  8 11:55:32 2016 Louis Vezia
-** Last update	Sat Jul 09 19:25:12 2016 Louis Vezia
+** Last update	Mon Jul 11 15:40:57 2016 Louis Vezia
 */
 
 #include "client.h"
@@ -99,20 +99,26 @@ int		check_end(t_client *client)
 int		stock_msg(t_client *client)
 {
   int		pos;
+  int		check;
   char		tmp[2];
   char		buffer[1024];
 
   pos = 0;
+  check = 0;
   memset(tmp, '\0', 2);
-  memset(buffer, 0, 1024);
-  while (read(client->fd, tmp, 1) > 0)
+  memset(buffer, '\0', 1024);
+  while (read(client->fd, tmp, 1) > 0 && check < 1024)
     {
       buffer[pos] = tmp[0];
-      pos++;
-      if (buffer[pos -1] == '\n')
+      if (buffer[pos] == '\n')
 	break;
+      pos++;
+      check++;
     }
+  buffer[pos] = '\0';
+  pthread_mutex_lock(&client->player.mutex);
   client->player.msg = buffer;
+  pthread_mutex_unlock(&client->player.mutex);
   handle_game(client);
   return (check_end(client));
 }
