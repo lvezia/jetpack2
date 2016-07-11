@@ -5,7 +5,7 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Sat Jul  9 16:25:04 2016 Louis Vezia
-** Last update	Mon Jul 11 15:08:30 2016 Louis Vezia
+** Last update	Mon Jul 11 16:08:52 2016 Louis Vezia
 */
 
 #include "client.h"
@@ -20,6 +20,14 @@ void		refresh_player(t_client *client, char **tab)
       client->player.score = atoi(tab[4]);
       pthread_mutex_unlock(&client->player.mutex);
     }
+  else
+    {
+      pthread_mutex_lock(&client->player.mutex);
+      client->player.x1 = atoi(tab[2]);
+      client->player.y1 = atoi(tab[3]);
+      client->player.score1 = atoi(tab[4]);
+      pthread_mutex_unlock(&client->player.mutex);
+    }
 }
 
 void	refresh_coins(t_client *client, char **tab)
@@ -28,14 +36,12 @@ void	refresh_coins(t_client *client, char **tab)
   int	x;
   int	y;
 
-  if (atoi(tab[1]) == client->player.id)
-    {
-      x = atoi(tab[2]);
-      y = atoi(tab[3]);
-      pos = (x * y) + atoi(tab[3]);
-      pthread_mutex_lock(&client->player.mutex);
-      client->map.map[pos] = '_';
-      pthread_mutex_unlock(&client->player.mutex);
+  x = atoi(tab[2]);
+  y = atoi(tab[3]);
+  pos = (x * y) + atoi(tab[3]);
+  pthread_mutex_lock(&client->player.mutex);
+  client->map.map[pos] = '_';
+  pthread_mutex_unlock(&client->player.mutex);
     }
 }
 

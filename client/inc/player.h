@@ -5,7 +5,7 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Thu Jul  7 18:43:39 2016 Louis Vezia
-** Last update	Sun Jul 10 16:23:14 2016 Louis Vezia
+** Last update	Mon Jul 11 16:03:56 2016 Louis Vezia
 */
 
 #ifndef PLAYER_H_
@@ -19,8 +19,11 @@ typedef struct	s_player
 {
   int		x;
   int		y;
+  int		x1;
+  int		x2;
   int		id;
   int		score;
+  int		score1;
   int		end;
   char		*msg;
   pthread_mutex_t       mutex;
