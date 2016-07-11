@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 21:15:55 2016 David Calo
-** Last update Sun Jul 10 18:51:58 2016 David Calo
+** Last update Mon Jul 11 10:07:01 2016 David Calo
 */
 
 #ifndef MACROS_H_
@@ -15,6 +15,8 @@
 
 # define DEFAULT_PORT 4242
 # define DEFAULT_GRAVITY -9.81
+
+# define ACCEPT_MAX_CLIENT 2
 
 # define LISTEN_MAX_CLIENT 8
 # define BUFFER_SIZE 4096

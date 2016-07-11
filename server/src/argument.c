@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Thu Jul  7 14:58:19 2016 David Calo
-** Last update Sun Jul 10 18:36:27 2016 David Calo
+** Last update Mon Jul 11 14:06:55 2016 David Calo
 */
 
 #include <string.h>
@@ -20,19 +20,21 @@ int		arg_read(int ac, char const *av[], t_server *s)
   int		i;
   size_t	j;
 
-  s->port = DEFAULT_PORT;
-  s->gravity = DEFAULT_GRAVITY;
-  s->map = NULL;
+  s->port = 0;
+  s->game.gravity = 0;
+  s->game.map = NULL;
   fn[0] = &arg_port;
   fn[1] = &arg_gravity;
   fn[2] = &arg_map;
   if (ac % 2 == 0)
-    return (FAIL);
+    return (xputerror("Invalid argument"));
   for (i = 1; i < ac; i += 2)
     for (j = 0; j < TABLEN(args); j++)
       if (strcmp(args[j], av[i]) == 0)
 	if (fn[j](av[i + 1], s))
 	  return (xputerror("Invalid argument"));
+  if (!s->port || !s->game.gravity || s->game.map == NULL)
+    return (xputerror("Invalid argument"));
   return (SUCCESS);
 }
 
@@ -48,13 +50,13 @@ int		arg_gravity(char const *arg, t_server *s)
 {
   if (check_float(arg))
     return (FAIL);
-  s->gravity = atof(arg);
+  s->game.gravity = atof(arg);
   return (SUCCESS);
 }
 
 int	arg_map(char const *arg, t_server *s)
 {
-  if ((s->map = read_file(arg)) == NULL)
+  if ((s->game.map = read_file(arg)) == NULL)
     return (xputerror("read_file: Failed"));
   return (SUCCESS);
 }

@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Thu Jul  7 11:06:54 2016 David Calo
-** Last update Sun Jul 10 18:51:35 2016 David Calo
+** Last update Mon Jul 11 14:23:00 2016 David Calo
 */
 
 #ifndef SERVER_H_
@@ -35,11 +35,18 @@ struct	s_fd
   t_fd		*next;
 };
 
+struct	s_game
+{
+  int		mx;
+  int		my;
+  char		*map;
+  double	gravity;
+};
+
 struct	s_server
 {
   PORT		port;
-  double	gravity;
-  char		*map;
+  t_game	game;
   int		fd;
   int		max_fd;
   fd_set	fds[2];
