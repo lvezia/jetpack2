@@ -5,7 +5,7 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Fri Jul  8 11:55:32 2016 Louis Vezia
-** Last update	Mon Jul 11 15:40:57 2016 Louis Vezia
+** Last update	Mon Jul 11 16:27:01 2016 Louis Vezia
 */
 
 #include "client.h"
@@ -117,7 +117,9 @@ int		stock_msg(t_client *client)
     }
   buffer[pos] = '\0';
   pthread_mutex_lock(&client->player.mutex);
-  client->player.msg = buffer;
+  if (client->player.msg != NULL)
+    free(client->player.msg);
+  client->player.msg = strdup(buffer);
   pthread_mutex_unlock(&client->player.mutex);
   handle_game(client);
   return (check_end(client));
