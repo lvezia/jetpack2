@@ -5,19 +5,21 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Fri Jul  8 16:20:12 2016 Louis Vezia
-** Last update	Sun Jul 10 16:30:53 2016 Louis Vezia
+** Last update	Mon Jul 11 15:02:38 2016 Louis Vezia
 */
 
 #include "client.h"
 
 void		set_client(t_client *client)
 {
+  pthread_mutex_lock(&client->player.mutex);
   if (client->player.id == 0)
     ask_id(client);
   if (client->map.map == NULL)
     ask_map(client);
   if (client->map.map != NULL && client->player.id != 0 && client->ready == 0)
     call_ready(client);
+  pthread_mutex_unlock(&client->player.mutex);
 }
 
 void		ask_id(t_client *client)
