@@ -5,21 +5,16 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Thu Jul  7 19:01:33 2016 David Calo
-** Last update Mon Jul 11 12:10:33 2016 David Calo
+** Last update Mon Jul 11 18:11:52 2016 David Calo
 */
 
-#include "server.h"
+#include "macros.h"
 
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
-
-int	xstrlenchr(char const *s, char c)
-{
-  return ((*s && *s != c) ? xstrlenchr(++s, c) + 1 : 0);
-}
 
 int	xputerror(char const *msg)
 {

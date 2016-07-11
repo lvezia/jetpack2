@@ -22,6 +22,7 @@ int	process_game(t_game *g)
   if ((g->mx = xstrlenchr(g->map, '\n')) == 0)
     return (FAIL);
   g->my = count_lines(g->map);
+  epur_str(g->map, '\n');
   printf("x: %d, y: %d\n", g->mx, g->my);
   return (SUCCESS);
 }

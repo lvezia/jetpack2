@@ -50,7 +50,6 @@ int	get_socket();
 int	bind_listen_socket(int, PORT);
 
 // tools.c
-int	xstrlenchr(char const *, char);
 int	xputerror(char const *);
 int	xperror(char const *);
 void	printlog(int, char const *);
@@ -59,5 +58,9 @@ char	*read_file(char const *);
 // tools_check.c
 int	check_int(char const *);
 int	check_float(char const *);
+
+// tools_string.c
+int	xstrlenchr(char const *, char);
+void	epur_str(char *, char);
 
 #endif

@@ -21,6 +21,7 @@ SRC	= main.c \
 	socket.c \
 	tools.c \
 	tools_check.c \
+	tools_string.c \
 
 CFLAGS	= -Wall -Wextra -Werror -g
 
