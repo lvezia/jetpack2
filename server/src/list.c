@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 16:25:27 2016 David Calo
-** Last update Mon Jul 11 10:19:59 2016 David Calo
+** Last update Mon Jul 11 20:17:07 2016 David Calo
 */
 
 #include "server.h"
@@ -78,5 +78,7 @@ t_fd	*list_get(t_fd *l, size_t n)
     return (NULL);
   for (i = 0; t->next && i < n; i++)
     t = t->next;
+  if (i != n)
+    return (NULL);
   return (t);
 }
