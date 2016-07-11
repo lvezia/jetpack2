@@ -5,7 +5,7 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Mon Jul 11 10:18:25 2016 Louis Vezia
-** Last update	Mon Jul 11 14:21:06 2016 Louis Vezia
+** Last update	Mon Jul 11 17:28:51 2016 Louis Vezia
 */
 
 #ifndef WINDOW_H_
@@ -20,7 +20,7 @@ typedef struct	s_window
 }		t_window;
 
 void	refresh_window(t_client *, t_window *);
-void	create_rect(t_window *, SDL_Rect);
+void	create_rect(t_window *, SDL_Rect, Uint32);
 void	show_players();
 
 #endif /* !WINDOW_H_ */

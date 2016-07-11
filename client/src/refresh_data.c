@@ -5,7 +5,7 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Sat Jul  9 16:25:04 2016 Louis Vezia
-** Last update	Mon Jul 11 16:30:32 2016 Louis Vezia
+** Last update	Mon Jul 11 16:49:51 2016 Louis Vezia
 */
 
 #include "client.h"
@@ -53,6 +53,10 @@ void	get_start(t_client *client)
     {
       pthread_mutex_lock(&client->player.mutex);
       client->start = 1;
+      client->player.x = 0;
+      client->player.y = 0;
+      client->player.x1 = 0;
+      client->player.y1 = 0;
       pthread_mutex_unlock(&client->player.mutex);
       printf("%s\n", "START");
     }

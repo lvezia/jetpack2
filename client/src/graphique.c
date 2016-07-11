@@ -5,7 +5,7 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Thu Jul  7 18:46:09 2016 Louis Vezia
-** Last update	Mon Jul 11 16:40:09 2016 Louis Vezia
+** Last update	Mon Jul 11 17:56:16 2016 Louis Vezia
 */
 
 #include "client.h"
@@ -15,6 +15,7 @@ void		set_window(t_client *client)
   pthread_mutex_lock(&client->map.mutex);
   client->map.windowX = client->map.sizeX * 15;
   client->map.windowY = client->map.sizeY * 30;
+  printf("X %d & Y %d\n", client->map.sizeX, client->map.sizeY);
   pthread_mutex_unlock(&client->map.mutex);
 }
 
