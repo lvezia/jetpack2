@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Thu Jul  7 11:06:54 2016 David Calo
-** Last update Mon Jul 11 14:23:00 2016 David Calo
+** Last update Mon Jul 11 15:08:39 2016 David Calo
 */
 
 #ifndef SERVER_H_
@@ -40,6 +40,7 @@ struct	s_game
   int		mx;
   int		my;
   char		*map;
+  int		status[2];
   double	gravity;
 };
 

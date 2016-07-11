@@ -5,12 +5,13 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 09:28:59 2016 David Calo
-** Last update Mon Jul 11 14:22:13 2016 David Calo
+** Last update Mon Jul 11 20:35:37 2016 David Calo
 */
 
 #include "server.h"
 
 #include <stdio.h>
+#include <string.h>
 
 int	count_lines(char const *s)
 {
@@ -23,12 +24,17 @@ int	process_game(t_game *g)
     return (FAIL);
   g->my = count_lines(g->map);
   epur_str(g->map, '\n');
+  memset(g->status, 0, 2);
   printf("x: %d, y: %d\n", g->mx, g->my);
   return (SUCCESS);
 }
 
-int	update_game(t_server const *s)
+int		update_game(t_server *s)
 {
-  (void)s;
+  size_t	i;
+
+  for (i = 0; i < 2; i++)
+    if (player_info(s, i, &s->game.status[i]))
+      return (FAIL);
   return (SUCCESS);
 }
