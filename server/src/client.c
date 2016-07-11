@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 11:17:29 2016 David Calo
-** Last update Sun Jul 10 18:58:27 2016 David Calo
+** Last update Mon Jul 11 10:17:49 2016 David Calo
 */
 
 #include "server.h"
@@ -62,7 +62,8 @@ int	client_close(t_fd *cl, size_t n)
 {
   int	fd;
 
-  fd = list_get(cl, n)->fd;
+  if ((fd = list_get(cl, n)->fd) <= 3)
+    return (SUCCESS);
   printf("[%d] disconnected\n", fd);
   close(fd);
   list_remove(cl, n);
@@ -78,6 +79,5 @@ int	client_accept(int sfd)
   size = sizeof(struct sockaddr);
   if ((fd = accept(sfd, &addr, &size)) == -1)
     return (xperror("accept"));
-  printf("[%d] connected\n", fd);
   return (fd);
 }
