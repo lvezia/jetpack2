@@ -5,7 +5,7 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Fri Jul  8 16:20:12 2016 Louis Vezia
-** Last update	Tue Jul 12 18:34:10 2016 Louis Vezia
+** Last update	Tue Jul 12 18:50:11 2016 Louis Vezia
 */
 
 #include "client.h"
@@ -59,10 +59,9 @@ void		ask_map(t_client *client)
   i = 0;
   write (client->fd, "MAP\n", 4);
   memset(tmp, '\0', 2048);
-  if ((r = read(client->fd, tmp, 2048)) == -1)
+  if ((r = read(client->fd, tmp, 2048)) < 1)
     return;
   tmp[r - 1] = '\0';
-  printf("%s\n", tmp);
   tab[i] = strtok(tmp, " ");
   i++;
   while (i < 4)

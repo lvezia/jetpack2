@@ -5,7 +5,7 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Fri Jul  8 11:55:32 2016 Louis Vezia
-** Last update	Tue Jul 12 18:36:30 2016 Louis Vezia
+** Last update	Tue Jul 12 21:18:04 2016 Louis Vezia
 */
 
 #include "client.h"
@@ -105,7 +105,7 @@ int		stock_msg(t_client *client)
       pos++;
       check++;
     }
-  buffer[pos - 1] = '\0';
+  buffer[pos] = '\0';
   pthread_mutex_lock(&client->player.mutex);
   if (client->player.msg != NULL)
     free(client->player.msg);
