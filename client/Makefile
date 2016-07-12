@@ -5,7 +5,7 @@
 ## Login   <calo_d@epitech.eu>
 ##
 ## Started on  Thu Jul  7 10:22:07 2016 David Calo
-## Last update Tue Jul 12 16:49:17 2016 Louis Vezia
+## Last update Tue Jul 12 17:12:30 2016 louis vezia
 ##
 
 NAME	= clientJ2T3
@@ -42,14 +42,14 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	$(CC) $(CFLAGS) -c $< -o $@ $(LDFLAGS)
 
 $(NAME): $(OBJ)
-	@/bin/echo -e "\x1b[32m*** $(NAME) successfully build ***\x1b[0m"
+	@/bin/echo -e "\x1b[32m*** $(NAME) successfully built ***\x1b[0m"
 	$(CC) $^ -o ../$@ $(LDFLAGS)
 
 all: $(NAME)
 
 clean:
 	$(RM) $(OBJ)
-	@/bin/echo -e "\x1b[32m*** Objects client removed $(NAME) ***\x1b[0m"
+	@/bin/echo -e "\x1b[32m*** Client objects removed $(NAME) ***\x1b[0m"
 
 fclean:
 	$(RM) $(OBJ) ../$(NAME)

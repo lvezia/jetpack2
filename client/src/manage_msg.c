@@ -5,7 +5,7 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Fri Jul  8 11:55:32 2016 Louis Vezia
-** Last update	Tue Jul 12 12:09:51 2016 Louis Vezia
+** Last update	Tue Jul 12 17:06:05 2016 Louis Vezia
 */
 
 #include "client.h"
@@ -84,6 +84,7 @@ int		check_end(t_client *client)
       while (msg[i] && msg[i] != ' ')
 	i++;
       tmp_id = atoi(&msg[i]);
+      printf("Score : %d\n", client->player.score);
       if (tmp_id == client->player.id)
 	printf("%s\n", "You win!");
       else if (tmp_id == -1)
