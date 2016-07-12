@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Sun Jul 10 12:37:10 2016 David Calo
-** Last update Tue Jul 12 12:25:46 2016 David Calo
+** Last update Tue Jul 12 16:26:22 2016 David Calo
 */
 
 #include "server.h"
@@ -54,12 +54,10 @@ int	parser_ready(t_fd *cl, char *s)
   return (SUCCESS);
 }
 
-
 int	parser_fire(t_fd *cl, char *s)
 {
   char	*tok;
 
-    printf("test fire\n");
   if (!(IS_READY(cl->status)) ||
       !(tok = strtok(s, " ")) ||
       strcasecmp("FIRE", tok) ||

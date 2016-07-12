@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 14:59:50 2016 David Calo
-** Last update Tue Jul 12 10:41:17 2016 David Calo
+** Last update Tue Jul 12 16:50:44 2016 David Calo
 */
 
 #include "server.h"
@@ -24,9 +24,8 @@ int	server_read(t_server *s, size_t n)
   if (list_size(s->client) >= MAX_CLIENT + 1)
     {
       if (close(fd))
-	return (xperror("close"));
-      else
-	return (FAIL);
+	xperror("close");
+      return (SUCCESS);
     }
   s->max_fd = (s->max_fd < fd ? fd : s->max_fd);
   printf("[%d] connected\n", fd);

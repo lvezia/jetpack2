@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 21:15:55 2016 David Calo
-** Last update Tue Jul 12 11:24:19 2016 David Calo
+** Last update Tue Jul 12 16:27:05 2016 David Calo
 */
 
 #ifndef PROTOTYPE_H_
@@ -42,8 +42,6 @@ int	parser_ready(t_fd *, char *);
 int	parser_fire(t_fd *, char *);
 
 // player.c
-int	player_id(t_fd *, int);
-int	player_map(t_fd *, t_game const *);
 int	player_info(t_server const *, int, int *);
 
 // select.c
