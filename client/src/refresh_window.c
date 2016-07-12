@@ -5,7 +5,7 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Mon Jul 11 10:31:47 2016 Louis Vezia
-** Last update	Tue Jul 12 10:29:07 2016 Louis Vezia
+** Last update	Tue Jul 12 10:53:17 2016 Louis Vezia
 */
 
 #include "client.h"
@@ -26,7 +26,7 @@ void		refresh_window(t_client *client, t_window *window)
       xi = i % client->map.sizeX;
       yi = i / client->map.sizeX;
       position.x = xi * 15;
-      position.y = yi * 30;
+      position.y = yi * 15;
       if (grid[i] == 'c')
 	create_rect(window, position, window->yellow);
       else if (grid[i] == 'e')
@@ -47,11 +47,11 @@ void		show_players(t_client *client, t_window *window)
   SDL_Surface	*player1 = NULL;
 
   pos.x = client->player.x * (double)15;
-  pos.y = client->player.y * (double)30;
+  pos.y = client->player.y * (double)15;
   pos1.x = client->player.x1 * (double)15;
-  pos1.y = client->player.y1 * (double)30;
-  player = SDL_CreateRGBSurface(SDL_HWSURFACE, 15, 30, 32, 0, 0, 0, 0);
-  player1 = SDL_CreateRGBSurface(SDL_HWSURFACE, 15, 30, 32, 0, 0, 0, 0);
+  pos1.y = client->player.y1 * (double)15;
+  player = SDL_CreateRGBSurface(SDL_HWSURFACE, 15, 15, 32, 0, 0, 0, 0);
+  player1 = SDL_CreateRGBSurface(SDL_HWSURFACE, 15, 15, 32, 0, 0, 0, 0);
   SDL_FillRect(player, NULL, window->white);
   SDL_FillRect(player1, NULL, window->green);
   SDL_BlitSurface(player, NULL, window->ecran, &pos);
@@ -64,7 +64,7 @@ void		create_rect(t_window *window, SDL_Rect position, Uint32 color)
 {
   SDL_Surface	*rectangle = NULL;
 
-  rectangle = SDL_CreateRGBSurface(SDL_HWSURFACE, 15, 30, 32, 0, 0, 0, 0);
+  rectangle = SDL_CreateRGBSurface(SDL_HWSURFACE, 15, 15, 32, 0, 0, 0, 0);
   SDL_FillRect(rectangle, NULL, color);
   SDL_BlitSurface(rectangle, NULL, window->ecran, &position);
   SDL_FreeSurface(rectangle);
