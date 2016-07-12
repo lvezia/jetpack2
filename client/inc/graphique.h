@@ -5,7 +5,7 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Thu Jul  7 18:47:09 2016 Louis Vezia
-** Last update	Mon Jul 11 15:48:28 2016 Louis Vezia
+** Last update	Tue Jul 12 09:45:42 2016 Louis Vezia
 */
 
 #ifndef GRAPHIQUE_H_
@@ -29,6 +29,7 @@ typedef struct		s_map
 void	*graphique(void *arg);
 void	set_window(t_client *);
 int	play(t_client *, t_window *);
+void	show_players(t_client *, t_window *);
 void	fire_on(t_client *);
 void	fire_off(t_client *);
 
