@@ -5,7 +5,7 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Mon Jul 11 10:31:47 2016 Louis Vezia
-** Last update	Tue Jul 12 14:16:41 2016 Louis Vezia
+** Last update	Tue Jul 12 16:05:26 2016 Louis Vezia
 */
 
 #include "client.h"
@@ -74,7 +74,7 @@ void		set_color(t_window *window)
 {
   window->red = SDL_MapRGB(window->ecran->format, 153, 0, 51);
   window->yellow = SDL_MapRGB(window->ecran->format, 255, 204, 51);
-  window->beige = SDL_MapRGB(window->ecran->format, 255, 255, 255);
+  window->beige = SDL_MapRGB(window->ecran->format, 255, 204, 153);
   window->green = SDL_MapRGB(window->ecran->format, 255, 102, 255);
   window->background = SDL_MapRGB(window->ecran->format, 51, 0, 153);
 }
