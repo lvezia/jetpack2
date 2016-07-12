@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Thu Jul  7 10:26:40 2016 David Calo
-** Last update Mon Jul 11 20:00:55 2016 David Calo
+** Last update Tue Jul 12 20:55:08 2016 David Calo
 */
 
 // #include <stdio.h>
@@ -32,7 +32,8 @@ static void		server_free()
 
   for (i = 1; i < list_size(s.client); list_remove(s.client, i))
     close(list_get(s.client, i)->fd);
-  close(s.client->fd);
+  if (s.client && s.client->fd)
+    close(s.client->fd);
   free(s.client);
   free(s.game.map);
 }
