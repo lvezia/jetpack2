@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 09:28:59 2016 David Calo
-** Last update Tue Jul 12 17:27:01 2016 David Calo
+** Last update Tue Jul 12 17:54:21 2016 David Calo
 */
 
 #include "server.h"
@@ -20,6 +20,8 @@ int	process_game(t_game *g)
   g->my = count_lines(g->map);
   epur_str(g->map, '\n');
   printf("x: %d, y: %d\n", g->mx, g->my);
+  g->start = 0;
+  g->player = NULL;
   return (SUCCESS);
 }
 
@@ -43,8 +45,10 @@ int		update_game(t_server *s)
 	  sprintf(list_get(s->client, i)->wbuf, "START");
 	  SET_START(list_get(s->client, i)->status);
 	}
+      s->game.start = 1;
       printf("*** START ***\n");
       return (SUCCESS);
     }
+  update_player(s);
   return (SUCCESS);
 }
