@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 11:17:29 2016 David Calo
-** Last update Mon Jul 11 10:20:54 2016 David Calo
+** Last update Mon Jul 11 19:48:42 2016 David Calo
 */
 
 #include "server.h"
@@ -37,7 +37,6 @@ int	client_read(t_server *s, size_t n)
   if (!parser(line))
     {
       strcpy(cl->rbuf, line);
-      strcpy(cl->wbuf, "Received");
       printf("[%d] \"%s\"\n", cl->fd, cl->rbuf);
     }
   return (SUCCESS);

@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Thu Jul  7 10:26:40 2016 David Calo
-** Last update Mon Jul 11 14:23:36 2016 David Calo
+** Last update Mon Jul 11 20:00:55 2016 David Calo
 */
 
 // #include <stdio.h>
@@ -26,7 +26,7 @@ static void	signal_handler(int sig)
     exit(EXIT_SUCCESS);
 }
 
-void	server_free()
+static void		server_free()
 {
   size_t	i;
 
@@ -37,11 +37,9 @@ void	server_free()
   free(s.game.map);
 }
 
-int	main(int ac, char const *av[])
+static int			signal_init()
 {
   struct sigaction	sig;
-  size_t	i;
-  size_t	j;
 
   memset(&sig, 0, sizeof(struct sigaction));
   sig.sa_handler = &signal_handler;
@@ -49,7 +47,16 @@ int	main(int ac, char const *av[])
     return (xperror("sigaction"));
   if (atexit(server_free))
     return (xputerror("atexit: failed"));
-  if (arg_read(ac, av, &s) ||
+  return (SUCCESS);
+}
+
+int		main(int ac, char const *av[])
+{
+  size_t	i;
+  size_t	j;
+
+  if (signal_init() ||
+      arg_read(ac, av, &s) ||
       server_init(&s))
     return (84);
   process_game(&s.game);
