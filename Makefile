@@ -5,37 +5,37 @@
 ## Login   <calo_d@epitech.eu>
 ##
 ## Started on  Thu Jul  7 09:41:47 2016 David Calo
-## Last update Tue Jul 12 15:16:02 2016 Louis Vezia
+## Last update Tue Jul 12 18:44:10 2016 Louis Vezia
 ##
-
-CLIENT	= client
 
 SERVER	= server
 
-all:
-	make all -C $(CLIENT)
-	make all -C $(SERVER)
+CLIENT	= client
 
-$(CLIENT):
-	make -C $(CLIENT)
+all:
+	make all -C $(SERVER)
+	make all -C $(CLIENT)
 
 $(SERVER):
 	make -C $(SERVER)
 
+$(CLIENT):
+	make -C $(CLIENT)
+
 clean:
-	make clean -C $(CLIENT)
 	make clean -C $(SERVER)
+	make clean -C $(CLIENT)
 
 fclean:
-	make fclean -C $(CLIENT)
 	make fclean -C $(SERVER)
+	make fclean -C $(CLIENT)
 
 re:
-	make re -C $(CLIENT)
 	make re -C $(SERVER)
+	make re -C $(CLIENT)
 
 do:
-	make do -C $(CLIENT)
 	make do -C $(SERVER)
+	make do -C $(CLIENT)
 
 .PHONY: $(CLIENT) $(SERVER) all clean fclean re do
