@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 21:15:55 2016 David Calo
-** Last update Mon Jul 11 20:30:57 2016 David Calo
+** Last update Tue Jul 12 12:22:13 2016 David Calo
 */
 
 #ifndef MACROS_H_
@@ -16,7 +16,7 @@
 # define DEFAULT_PORT 4242
 # define DEFAULT_GRAVITY -9.81
 
-# define ACCEPT_MAX_CLIENT 2
+# define MAX_CLIENT 2
 
 # define LISTEN_MAX_CLIENT 8
 # define BUFFER_SIZE 4096
@@ -41,5 +41,10 @@
 # define SET_ID(x) ((x) |= ST_ID)
 # define SET_MAP(x) ((x) |= ST_MAP)
 # define SET_READY(x) ((x) |= ST_READY)
+
+# define ST_FIRE 0x8
+# define HAS_FIRE(x) (((x) & ST_FIRE) == ST_FIRE)
+# define SET_FIRE(x) ((x) |= ST_FIRE)
+# define UNSET_FIRE(x) ((x) &= (~ST_FIRE))
 
 #endif
