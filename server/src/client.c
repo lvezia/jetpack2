@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 11:17:29 2016 David Calo
-** Last update Tue Jul 12 19:01:45 2016 David Calo
+** Last update Tue Jul 12 22:02:29 2016 David Calo
 */
 
 #include "server.h"
@@ -39,7 +39,9 @@ int	client_read(t_server *s, size_t n)
     {
       if (!parser(cl, tmp))
 	{
-	  strcpy(cl->rbuf, tmp);
+	  if (*cl->rbuf)
+	    strcat(cl->rbuf, "\n");
+	  strcat(cl->rbuf, tmp);
 	  printf("[%d] \"%s\"\n", cl->fd, cl->rbuf);
 	}
     }
@@ -49,15 +51,20 @@ int	client_read(t_server *s, size_t n)
 int	client_write(t_server *s, size_t n)
 {
   t_fd	*cl;
+  char	*tmp;
 
   cl = list_get(s->client, n);
   if (*cl->wbuf)
     {
-      if (!strcmp(cl->wbuf, "MAP"))
-	sprintf(cl->wbuf, "MAP %d %d %s", s->game.mx, s->game.my, s->game.map);
-      strcat(cl->wbuf, "\n");
-      if (write(cl->fd, cl->wbuf, strlen(cl->wbuf)) < 1)
-	return (errno != ECONNRESET ? xperror("write") : FAIL);
+      for (tmp = cl->wbuf; (tmp = strtok(tmp, "\n")); tmp = NULL)
+	{
+	  printf("[%d] << \"%s\"\n", cl->fd, tmp);
+	  if (!strcmp(tmp, "MAP"))
+	    dprintf(cl->fd, "MAP %d %d %s\n", s->game.mx, s->game.my, s->game.map);
+	  else
+	    if (dprintf(cl->fd, "%s\n", tmp) < 1)
+	      return (errno != ECONNRESET ? xperror("write") : FAIL);
+	}
       memset(cl->wbuf, 0, strlen(cl->wbuf));
     }
   return (SUCCESS);
