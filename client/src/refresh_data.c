@@ -5,7 +5,7 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Sat Jul  9 16:25:04 2016 Louis Vezia
-** Last update	Tue Jul 12 10:07:15 2016 Louis Vezia
+** Last update	Tue Jul 12 14:44:27 2016 Louis Vezia
 */
 
 #include "client.h"
@@ -30,15 +30,15 @@ void		refresh_player(t_client *client, char **tab)
     }
 }
 
-void	refresh_coins(t_client *client, char **tab)
+void		refresh_coins(t_client *client, char **tab)
 {
   int	pos;
-  int	x;
-  int	y;
+  double	x;
+  double	y;
 
   x = atoi(tab[2]);
-  y = atoi(tab[3]);
-  pos = (x * y) + atoi(tab[3]);
+  y = (client->map.sizeY - 1) - atoi(tab[3]);
+  pos = (client->map.sizeX * y) + x;
   pthread_mutex_lock(&client->player.mutex);
   client->map.map[pos] = '_';
   pthread_mutex_unlock(&client->player.mutex);

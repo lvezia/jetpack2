@@ -5,7 +5,7 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Mon Jul 11 10:31:47 2016 Louis Vezia
-** Last update	Tue Jul 12 10:53:17 2016 Louis Vezia
+** Last update	Tue Jul 12 14:16:41 2016 Louis Vezia
 */
 
 #include "client.h"
@@ -52,7 +52,7 @@ void		show_players(t_client *client, t_window *window)
   pos1.y = client->player.y1 * (double)15;
   player = SDL_CreateRGBSurface(SDL_HWSURFACE, 15, 15, 32, 0, 0, 0, 0);
   player1 = SDL_CreateRGBSurface(SDL_HWSURFACE, 15, 15, 32, 0, 0, 0, 0);
-  SDL_FillRect(player, NULL, window->white);
+  SDL_FillRect(player, NULL, window->beige);
   SDL_FillRect(player1, NULL, window->green);
   SDL_BlitSurface(player, NULL, window->ecran, &pos);
   SDL_BlitSurface(player1, NULL, window->ecran, &pos1);
@@ -74,7 +74,7 @@ void		set_color(t_window *window)
 {
   window->red = SDL_MapRGB(window->ecran->format, 153, 0, 51);
   window->yellow = SDL_MapRGB(window->ecran->format, 255, 204, 51);
-  window->white = SDL_MapRGB(window->ecran->format, 255, 255, 255);
+  window->beige = SDL_MapRGB(window->ecran->format, 255, 255, 255);
   window->green = SDL_MapRGB(window->ecran->format, 255, 102, 255);
   window->background = SDL_MapRGB(window->ecran->format, 51, 0, 153);
 }

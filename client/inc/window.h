@@ -5,7 +5,7 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Mon Jul 11 10:18:25 2016 Louis Vezia
-** Last update	Tue Jul 12 10:15:42 2016 Louis Vezia
+** Last update	Tue Jul 12 14:16:14 2016 Louis Vezia
 */
 
 #ifndef WINDOW_H_
@@ -19,7 +19,7 @@ typedef struct	s_window
   SDL_Event	event;
   Uint32	red;
   Uint32	yellow;
-  Uint32	white;
+  Uint32	beige;
   Uint32	background;
   Uint32	green;
 }		t_window;
