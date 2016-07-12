@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 09:28:59 2016 David Calo
-** Last update Tue Jul 12 11:23:07 2016 David Calo
+** Last update Tue Jul 12 17:27:01 2016 David Calo
 */
 
 #include "server.h"
@@ -25,11 +25,26 @@ int	process_game(t_game *g)
 
 int		update_game(t_server *s)
 {
-  // size_t	i;
+  size_t	i;
+  size_t	size;
+  char		status;
 
-  (void)s;
-  // for (i = 1; i < MAX_CLIENT + 1; i++)
-  //   if (player_info(s, i, &s->game.status[i]))
-  //     return (FAIL);
+  status = ST_ALL | ST_START;
+  if ((size = list_size(s->client)) < MAX_CLIENT + 1)
+    return (SUCCESS);
+  for (i = 1; i < size; i++)
+    status &= list_get(s->client, i)->status;
+  if (!IS_READY(status))
+    return (SUCCESS);
+  else if (!HAS_START(status))
+    {
+      for (i = 1; i < size; i++)
+	{
+	  sprintf(list_get(s->client, i)->wbuf, "START");
+	  SET_START(list_get(s->client, i)->status);
+	}
+      printf("*** START ***\n");
+      return (SUCCESS);
+    }
   return (SUCCESS);
 }

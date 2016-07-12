@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 21:15:55 2016 David Calo
-** Last update Tue Jul 12 12:22:13 2016 David Calo
+** Last update Tue Jul 12 16:29:50 2016 David Calo
 */
 
 #ifndef MACROS_H_
@@ -42,7 +42,11 @@
 # define SET_MAP(x) ((x) |= ST_MAP)
 # define SET_READY(x) ((x) |= ST_READY)
 
-# define ST_FIRE 0x8
+# define ST_START 0x8
+# define HAS_START(x) (((x) & ST_START) == ST_START)
+# define SET_START(x) ((x) |= ST_START)
+
+# define ST_FIRE 0x16
 # define HAS_FIRE(x) (((x) & ST_FIRE) == ST_FIRE)
 # define SET_FIRE(x) ((x) |= ST_FIRE)
 # define UNSET_FIRE(x) ((x) &= (~ST_FIRE))
