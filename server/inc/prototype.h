@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 21:15:55 2016 David Calo
-** Last update Tue Jul 12 16:27:05 2016 David Calo
+** Last update Tue Jul 12 17:11:39 2016 David Calo
 */
 
 #ifndef PROTOTYPE_H_
@@ -68,6 +68,7 @@ int	check_float(char const *);
 
 // tools_string.c
 int	xstrlenchr(char const *, char);
+int	count_lines(char const *);
 void	epur_str(char *, char);
 
 #endif

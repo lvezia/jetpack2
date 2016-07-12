@@ -13,11 +13,6 @@
 #include <stdio.h>
 #include <string.h>
 
-int	count_lines(char const *s)
-{
-  return (*s ? count_lines(s + 1) + (*s == '\n') : 0);
-}
-
 int	process_game(t_game *g)
 {
   if ((g->mx = xstrlenchr(g->map, '\n')) == 0)
