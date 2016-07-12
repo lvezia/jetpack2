@@ -31,7 +31,7 @@ struct	s_fd
   t_buffer	buf;
   char		rbuf[BUFFER_SIZE];
   char		wbuf[BUFFER_SIZE];
-  t_fd_fn	fn[2];
+  t_rw_fn	fn[2];
   t_fd		*next;
 };
 

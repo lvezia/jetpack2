@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-t_fd	*list_new(int fd, t_fd_fn fn_read, t_fd_fn fn_write)
+t_fd	*list_new(int fd, t_rw_fn fn_read, t_rw_fn fn_write)
 {
   t_fd	*new;
 

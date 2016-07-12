@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 21:15:55 2016 David Calo
-** Last update Mon Jul 11 20:28:01 2016 David Calo
+** Last update Tue Jul 12 09:44:51 2016 David Calo
 */
 
 #ifndef PROTOTYPE_H_
@@ -28,7 +28,7 @@ int	process_game(t_game *);
 int	update_game(t_server *);
 
 // list.c
-t_fd	*list_new(int, t_fd_fn, t_fd_fn);
+t_fd	*list_new(int, t_rw_fn, t_rw_fn);
 int	list_add(t_fd *, t_fd *);
 int	list_remove(t_fd *, size_t);
 size_t	list_size(t_fd *);
