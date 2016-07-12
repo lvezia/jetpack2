@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 09:28:59 2016 David Calo
-** Last update Mon Jul 11 20:35:37 2016 David Calo
+** Last update Tue Jul 12 10:39:43 2016 David Calo
 */
 
 #include "server.h"
@@ -24,7 +24,6 @@ int	process_game(t_game *g)
     return (FAIL);
   g->my = count_lines(g->map);
   epur_str(g->map, '\n');
-  memset(g->status, 0, 2);
   printf("x: %d, y: %d\n", g->mx, g->my);
   return (SUCCESS);
 }

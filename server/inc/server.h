@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Thu Jul  7 11:06:54 2016 David Calo
-** Last update Mon Jul 11 15:08:39 2016 David Calo
+** Last update Tue Jul 12 10:38:27 2016 David Calo
 */
 
 #ifndef SERVER_H_
@@ -28,7 +28,7 @@ struct	s_buffer
 struct	s_fd
 {
   int		fd;
-  t_buffer	buf;
+  char		status;
   char		rbuf[BUFFER_SIZE];
   char		wbuf[BUFFER_SIZE];
   t_rw_fn	fn[2];
@@ -40,7 +40,6 @@ struct	s_game
   int		mx;
   int		my;
   char		*map;
-  int		status[2];
   double	gravity;
 };
 
