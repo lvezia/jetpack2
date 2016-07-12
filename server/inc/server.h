@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Thu Jul  7 11:06:54 2016 David Calo
-** Last update Tue Jul 12 17:41:08 2016 David Calo
+** Last update Wed Jul 13 00:09:43 2016 David Calo
 */
 
 #ifndef SERVER_H_
@@ -39,7 +39,9 @@ struct	s_player
 {
   double	x;
   double	y;
+  double	vel;
   int		score;
+  char		fire;
 };
 
 struct	s_game
@@ -49,6 +51,7 @@ struct	s_game
   char		*map;
   double	gravity;
   char		start;
+  size_t	nplayer;
   t_player	*player;
 };
 

@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 09:28:59 2016 David Calo
-** Last update Tue Jul 12 17:54:21 2016 David Calo
+** Last update Tue Jul 12 22:05:50 2016 David Calo
 */
 
 #include "server.h"
@@ -49,6 +49,5 @@ int		update_game(t_server *s)
       printf("*** START ***\n");
       return (SUCCESS);
     }
-  update_player(s);
-  return (SUCCESS);
+  return (update_player(s));
 }

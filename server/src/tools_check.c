@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Sun Jul 10 18:30:18 2016 David Calo
-** Last update Sun Jul 10 18:53:17 2016 David Calo
+** Last update Wed Jul 13 00:18:45 2016 David Calo
 */
 
 #include "macros.h"
@@ -31,7 +31,8 @@ int	check_float(char const *s)
 
   if (!s)
     return (FAIL);
-  for (i = 0; s[i]; i++)
+  i = ((s[0] == '-') ? 1 : 0);
+  for (; s[i]; i++)
     if (!isdigit(s[i]) && s[i] != '.')
       return (FAIL);
   return (SUCCESS);

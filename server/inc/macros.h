@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 21:15:55 2016 David Calo
-** Last update Tue Jul 12 16:29:50 2016 David Calo
+** Last update Wed Jul 13 01:02:06 2016 David Calo
 */
 
 #ifndef MACROS_H_
@@ -17,9 +17,13 @@
 # define DEFAULT_GRAVITY -9.81
 
 # define MAX_CLIENT 2
-
 # define LISTEN_MAX_CLIENT 8
 # define BUFFER_SIZE 4096
+# define REFRESH_TIME (200 / 1000)
+# define MOV_SPEED (5)
+# define PLAYER_WEIGHT 1
+
+# define TV_TO_SEC(x) (((double)(x).tv_sec + ((double)(x).tv_usec * 1e-6)))
 
 # define TABLEN(x) (sizeof(x) / sizeof(*x))
 
