@@ -5,7 +5,7 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Thu Jul  7 18:46:09 2016 Louis Vezia
-** Last update	Mon Jul 11 17:56:16 2016 Louis Vezia
+** Last update	Tue Jul 12 10:52:22 2016 Louis Vezia
 */
 
 #include "client.h"
@@ -14,8 +14,7 @@ void		set_window(t_client *client)
 {
   pthread_mutex_lock(&client->map.mutex);
   client->map.windowX = client->map.sizeX * 15;
-  client->map.windowY = client->map.sizeY * 30;
-  printf("X %d & Y %d\n", client->map.sizeX, client->map.sizeY);
+  client->map.windowY = client->map.sizeY * 15;
   pthread_mutex_unlock(&client->map.mutex);
 }
 
@@ -35,7 +34,7 @@ void		*graphique(void *arg)
     {
       window.ecran = SDL_SetVideoMode(client->map.windowX, client->map.windowY,
 			       32, SDL_HWSURFACE | SDL_DOUBLEBUF);
-      SDL_EnableKeyRepeat(10, 10);
+      SDL_EnableKeyRepeat(50, 50);
       SDL_WM_SetCaption("jetpack2Tek3", NULL);
       SDL_FillRect(window.ecran, NULL, SDL_MapRGB(window.ecran->format,
 						  51, 0, 153));

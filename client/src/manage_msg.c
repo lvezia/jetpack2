@@ -5,7 +5,7 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Fri Jul  8 11:55:32 2016 Louis Vezia
-** Last update	Mon Jul 11 16:27:01 2016 Louis Vezia
+** Last update	Tue Jul 12 10:36:43 2016 Louis Vezia
 */
 
 #include "client.h"
@@ -56,7 +56,6 @@ void		get_info_coins(t_client *client)
 	    }
 	  else
 	    tab[i] = strtok(NULL, "\n");
-	  printf("%s\n", tab[i]);
 	  i++;
 	}
       refresh_coins(client, tab);
