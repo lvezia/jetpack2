@@ -5,7 +5,7 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Sat Jul  9 16:25:04 2016 Louis Vezia
-** Last update	Mon Jul 11 16:49:51 2016 Louis Vezia
+** Last update	Tue Jul 12 10:07:15 2016 Louis Vezia
 */
 
 #include "client.h"
@@ -16,7 +16,7 @@ void		refresh_player(t_client *client, char **tab)
     {
       pthread_mutex_lock(&client->player.mutex);
       client->player.x = atoi(tab[2]);
-      client->player.y = atoi(tab[3]);
+      client->player.y = (client->map.sizeY - 1) - atoi(tab[3]);
       client->player.score = atoi(tab[4]);
       pthread_mutex_unlock(&client->player.mutex);
     }
@@ -24,7 +24,7 @@ void		refresh_player(t_client *client, char **tab)
     {
       pthread_mutex_lock(&client->player.mutex);
       client->player.x1 = atoi(tab[2]);
-      client->player.y1 = atoi(tab[3]);
+      client->player.y1 = (client->map.sizeY - 1) - atoi(tab[3]);
       client->player.score1 = atoi(tab[4]);
       pthread_mutex_unlock(&client->player.mutex);
     }

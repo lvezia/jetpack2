@@ -5,7 +5,7 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Thu Jul  7 18:43:39 2016 Louis Vezia
-** Last update	Mon Jul 11 16:10:12 2016 Louis Vezia
+** Last update	Mon Jul 11 18:38:51 2016 Louis Vezia
 */
 
 #ifndef PLAYER_H_
@@ -17,10 +17,10 @@ typedef struct s_client t_client;
 
 typedef struct	s_player
 {
-  int		x;
-  int		y;
-  int		x1;
-  int		y1;
+  double	x;
+  double	y;
+  double	x1;
+  double	y1;
   int		id;
   int		score;
   int		score1;
