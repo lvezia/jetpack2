@@ -5,7 +5,7 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Fri Jul  8 16:20:12 2016 Louis Vezia
-** Last update	Mon Jul 11 15:02:38 2016 Louis Vezia
+** Last update	Tue Jul 12 18:34:10 2016 Louis Vezia
 */
 
 #include "client.h"
@@ -54,20 +54,20 @@ void		ask_map(t_client *client)
   int		i;
   char		tmp[2048];
   char		*tab[4];
+  int		r;
 
   i = 0;
   write (client->fd, "MAP\n", 4);
-  memset(tmp, '\0', 1024);
-  if (read(client->fd, tmp, 1024) == -1)
+  memset(tmp, '\0', 2048);
+  if ((r = read(client->fd, tmp, 2048)) == -1)
     return;
+  tmp[r - 1] = '\0';
+  printf("%s\n", tmp);
   tab[i] = strtok(tmp, " ");
   i++;
   while (i < 4)
     {
-      if (i != 3)
-	tab[i] = strtok(NULL, " ");
-      else
-	tab[i] = strtok(NULL, "\n");
+      tab[i] = strtok(NULL, " ");
       i++;
     }
   client->map.sizeX = atoi(tab[1]);
