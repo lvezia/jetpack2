@@ -5,21 +5,73 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Sun Jul 10 12:37:10 2016 David Calo
-** Last update Sun Jul 10 18:55:51 2016 David Calo
+** Last update Tue Jul 12 12:25:46 2016 David Calo
 */
 
 #include "server.h"
 
+#include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 
-int		parser(char const *s)
+int		parser(t_fd *cl, char *s)
 {
   size_t	i;
-  static char	*tab[] = {"ID", "MAP", "READY", "FIRE "};
+  t_pars_fn	tab[] = {&parser_id, &parser_map, &parser_ready, &parser_fire};
 
-  for (i = 0; i < 4; i++)
-    if (!strncasecmp(tab[i], s, 5))
+  for (i = 0; i < TABLEN(tab); i++)
+    if (!tab[i](cl, s))
       return (SUCCESS);
   return (FAIL);
+}
+
+int	parser_id(t_fd *cl, char *s)
+{
+  if (strcasecmp("ID", s))
+    return (FAIL);
+  if (sprintf(cl->wbuf, "ID %d", cl->fd) < 0)
+    return (FAIL);
+  SET_ID(cl->status);
+  return (SUCCESS);
+}
+
+int	parser_map(t_fd *cl, char *s)
+{
+  if (strcasecmp("MAP", s))
+    return (FAIL);
+  if (sprintf(cl->wbuf, "MAP") < 0)
+    return (FAIL);
+  SET_MAP(cl->status);
+  return (SUCCESS);
+}
+
+int	parser_ready(t_fd *cl, char *s)
+{
+  if (strcasecmp("READY", s))
+    return (FAIL);
+  SET_READY(cl->status);
+  return (SUCCESS);
+}
+
+
+int	parser_fire(t_fd *cl, char *s)
+{
+  char	*tok;
+
+    printf("test fire\n");
+  if (!(IS_READY(cl->status)) ||
+      !(tok = strtok(s, " ")) ||
+      strcasecmp("FIRE", tok) ||
+      !(tok = strtok(NULL, " ")) ||
+      (strlen(tok) > 1) ||
+      !isdigit(*tok))
+    return (FAIL);
+  if (atoi(tok) == 1)
+    SET_FIRE(cl->status);
+  else if (atoi(tok) == 0)
+    UNSET_FIRE(cl->status);
+  else
+    return (FAIL);
+  return (SUCCESS);
 }

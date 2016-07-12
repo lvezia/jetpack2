@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 16:25:27 2016 David Calo
-** Last update Mon Jul 11 20:17:07 2016 David Calo
+** Last update Tue Jul 12 10:35:05 2016 David Calo
 */
 
 #include "server.h"
@@ -13,12 +13,13 @@
 #include <stdlib.h>
 #include <string.h>
 
-t_fd	*list_new(int fd, t_fd_fn fn_read, t_fd_fn fn_write)
+t_fd	*list_new(int fd, t_rw_fn fn_read, t_rw_fn fn_write)
 {
   t_fd	*new;
 
   new = malloc(sizeof(*new));
   new->fd = fd;
+  new->status = 0x0;
   new->fn[0] = fn_read;
   new->fn[1] = fn_write;
   new->next = NULL;
