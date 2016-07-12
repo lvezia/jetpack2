@@ -5,7 +5,7 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Fri Jul  8 11:55:32 2016 Louis Vezia
-** Last update	Tue Jul 12 18:36:30 2016 Louis Vezia
+** Last update	Tue Jul 12 21:12:41 2016 Louis Vezia
 */
 
 #include "client.h"
@@ -20,11 +20,13 @@ void		get_info_player(t_client *client)
   msg = client->player.msg;
   if (strstr(msg, "PLAYER") != 0)
     {
+      printf("%s\n", msg);
       tab[i] = strtok(msg, " ");
       i++;
       while (i < 5)
 	{
 	  tab[i] = strtok(NULL, " ");
+	  printf("GET INFO PLAYER : [%d] {%s}\n", i, tab[i]);
 	  i++;
 	}
       refresh_player(client, tab);
@@ -105,7 +107,7 @@ int		stock_msg(t_client *client)
       pos++;
       check++;
     }
-  buffer[pos - 1] = '\0';
+  buffer[pos] = '\0';
   pthread_mutex_lock(&client->player.mutex);
   if (client->player.msg != NULL)
     free(client->player.msg);
