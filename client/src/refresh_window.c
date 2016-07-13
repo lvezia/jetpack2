@@ -5,7 +5,7 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Mon Jul 11 10:31:47 2016 Louis Vezia
-** Last update	Tue Jul 12 16:05:26 2016 Louis Vezia
+** Last update	Wed Jul 13 10:22:10 2016 Louis Vezia
 */
 
 #include "client.h"
@@ -30,9 +30,9 @@ void		refresh_window(t_client *client, t_window *window)
       if (grid[i] == 'c')
 	create_rect(window, position, window->yellow);
       else if (grid[i] == 'e')
-	create_rect(window, position, window->red);
+	create_rect(window, position, window->blue);
       else
-	create_rect(window, position, window->background);
+	create_rect(window, position, window->grey);
       i++;
     }
   if (client->start == 1)
@@ -52,7 +52,7 @@ void		show_players(t_client *client, t_window *window)
   pos1.y = client->player.y1 * (double)15;
   player = SDL_CreateRGBSurface(SDL_HWSURFACE, 15, 15, 32, 0, 0, 0, 0);
   player1 = SDL_CreateRGBSurface(SDL_HWSURFACE, 15, 15, 32, 0, 0, 0, 0);
-  SDL_FillRect(player, NULL, window->beige);
+  SDL_FillRect(player, NULL, window->red);
   SDL_FillRect(player1, NULL, window->green);
   SDL_BlitSurface(player, NULL, window->ecran, &pos);
   SDL_BlitSurface(player1, NULL, window->ecran, &pos1);
@@ -72,9 +72,11 @@ void		create_rect(t_window *window, SDL_Rect position, Uint32 color)
 
 void		set_color(t_window *window)
 {
+  window->background = SDL_MapRGB(window->ecran->format, 240, 240, 240);
   window->red = SDL_MapRGB(window->ecran->format, 153, 0, 51);
   window->yellow = SDL_MapRGB(window->ecran->format, 255, 204, 51);
   window->beige = SDL_MapRGB(window->ecran->format, 255, 204, 153);
-  window->green = SDL_MapRGB(window->ecran->format, 255, 102, 255);
-  window->background = SDL_MapRGB(window->ecran->format, 51, 0, 153);
+  window->green = SDL_MapRGB(window->ecran->format, 0, 204, 102);
+  window->blue = SDL_MapRGB(window->ecran->format, 0, 204, 255);
+  window->grey = SDL_MapRGB(window->ecran->format, 240, 240, 240);
 }

@@ -5,7 +5,7 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Thu Jul  7 18:12:38 2016 Louis Vezia
-** Last update	Mon Jul 11 16:53:16 2016 Louis Vezia
+** Last update	Wed Jul 13 09:56:20 2016 Louis Vezia
 */
 
 #include "client.h"
@@ -34,5 +34,6 @@ int		run(t_client *client)
   pthread_create(&thread, NULL, graphique, client);
   communication(client);
   pthread_join(thread, NULL);
+  close(client->fd);
   return (0);
 }

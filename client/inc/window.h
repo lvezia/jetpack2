@@ -5,7 +5,7 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Mon Jul 11 10:18:25 2016 Louis Vezia
-** Last update	Tue Jul 12 14:16:14 2016 Louis Vezia
+** Last update	Wed Jul 13 10:20:56 2016 Louis Vezia
 */
 
 #ifndef WINDOW_H_
@@ -17,11 +17,13 @@ typedef struct	s_window
 {
   SDL_Surface	*ecran;
   SDL_Event	event;
+  Uint32	background;
   Uint32	red;
   Uint32	yellow;
   Uint32	beige;
-  Uint32	background;
   Uint32	green;
+  Uint32	blue;
+  Uint32	grey;
 }		t_window;
 
 void	refresh_window(t_client *, t_window *);
