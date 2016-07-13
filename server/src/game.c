@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 09:28:59 2016 David Calo
-** Last update Wed Jul 13 09:47:29 2016 David Calo
+** Last update Wed Jul 13 13:52:23 2016 David Calo
 */
 
 #include "server.h"
@@ -38,6 +38,7 @@ int		update_game(t_server *s)
     return (SUCCESS);
   for (i = 1; i < size; i++)
     status &= list_get(s->client, i)->status;
+  // printf("update_game fire: %x\n", status);
   if (!IS_READY(status))
     return (player_clear(&s->game));
   else if (!HAS_START(status))

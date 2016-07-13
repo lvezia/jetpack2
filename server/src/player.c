@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Mon Jul 11 16:57:06 2016 David Calo
-** Last update Wed Jul 13 10:15:36 2016 David Calo
+** Last update Wed Jul 13 21:14:21 2016 David Calo
 */
 
 #include "server.h"
@@ -15,26 +15,14 @@
 #include <stdlib.h>
 #include <sys/time.h>
 
-int	player_info(t_server const *s, int n, int *status)
+int		player_position(t_player *p, t_game *g, double step, int has_fire)
 {
-  t_fd	*cl;
+  int		r;
 
-  if ((cl = list_get(s->client, n + 1)) == NULL ||
-      !(*cl->rbuf))
-    return (FAIL);
-  printf("player_info: %d\n", *status);
-  memset(cl->rbuf, 0, strlen(cl->rbuf));
-  return (SUCCESS);
-}
-
-int	player_position(t_player *p, double g, double step, int has_fire)
-{
   p->fire = has_fire;
   p->x += MOV_SPEED * step;
-  p->vel += step * (g * g) * p->fire;
+  p->vel += step * -(g->gravity) * p->fire;
   p->y += step * p->vel;
-  // *step * g->player[i].vel
-  return (SUCCESS);
 }
 
 static double	update_time(t_game *g)
@@ -54,32 +42,61 @@ static double	update_time(t_game *g)
   return (step);
 }
 
+int		notify_clients(t_fd *cl, char const *s)
+{
+  size_t	i;
+
+  for (i = 0; i < list_size(cl); i++)
+    strcat(list_get(cl, i)->wbuf, s);
+  return (SUCCESS);
+}
+
+int		winner_score(t_game *g, t_fd *cl)
+{
+  size_t	i;
+  int		score;
+  int		fd;
+
+  score = 0;
+  fd = -1;
+  for (i = 0; i < g->nplayer; i++)
+    {
+      if (g->player[i].score > score)
+	{
+	  score = g->player[i].score;
+	  fd = list_get(cl, i)->fd;
+	}
+      else if (g->player[i].score == score)
+	fd = -1;
+    }
+  return (fd);
+}
+
 int		player_move(t_game *g, t_fd *cl)
 {
   size_t	i;
   double	step;
+  char		s[BUFFER_SIZE];
+  int		final;
+  int		r;
+  int		fire;
 
+  final = 0;
+  memset(s, 0, BUFFER_SIZE);
   if ((step = update_time(g)) == 0.0f)
     return (SUCCESS);
-  // for (i = 0; i < g->nplayer; i++)
-  //   {
-  //     int pos = (int)g->player[i].x
-  //     g->map[]
-  //     g->player[i].x;
-  //     g->player[i].y;
-  //
-  //   }
-  printf("STEP: %lf\n", step);
   for (i = 0; i < g->nplayer; i++)
     {
-      // printf("PLAYER %d, step: %lf, v: %lf, g: %lf\n", list_get(cl, i)->fd,
-      // step, g->player[i].vel, g->gravity);
-      player_position(&g->player[i], g->gravity, step,
-		      (HAS_FIRE(list_get(cl, i)->status) ? 1 : -1));
-      sprintf(list_get(cl, i)->wbuf, "PLAYER %d %lf %lf %d",
+      fire = (HAS_FIRE(list_get(cl, i)->status) ? 1 : -1);
+      if ((r = player_position(&g->player[i], g, step, fire)) == FAIL)
+	final = (!final ? list_get(cl, i)->fd : -1);
+      sprintf(s + strlen(s), "%sPLAYER %d %lf %lf %d", (*s ? "\n" : ""),
 	      list_get(cl, i)->fd, g->player[i].x, g->player[i].y,
 	      g->player[i].score);
     }
+  if (final)
+    sprintf(s + strlen(s), "%sFINISH %d", (*s ? "\n" : ""), final);
+  notify_clients(cl, s);
   return (SUCCESS);
 }
 
