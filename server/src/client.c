@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 11:17:29 2016 David Calo
-** Last update Wed Jul 13 10:59:31 2016 David Calo
+** Last update Wed Jul 13 22:16:09 2016 David Calo
 */
 
 #include "server.h"
@@ -91,4 +91,13 @@ int	client_accept(int sfd)
   if ((fd = accept(sfd, &addr, &size)) == -1)
     return (xperror("accept"));
   return (fd);
+}
+
+int		client_notify(t_fd *cl, char const *s)
+{
+  size_t	i;
+
+  for (i = 0; i < list_size(cl); i++)
+    strcat(list_get(cl, i)->wbuf, s);
+  return (SUCCESS);
 }

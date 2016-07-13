@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Mon Jul 11 16:57:06 2016 David Calo
-** Last update Wed Jul 13 21:14:21 2016 David Calo
+** Last update Wed Jul 13 22:31:06 2016 David Calo
 */
 
 #include "server.h"
@@ -20,9 +20,13 @@ int		player_position(t_player *p, t_game *g, double step, int has_fire)
   int		r;
 
   p->fire = has_fire;
+  if ((r = map_object(p, g)) == 1)
+    return (r);
   p->x += MOV_SPEED * step;
   p->vel += step * -(g->gravity) * p->fire;
   p->y += step * p->vel;
+  r += map_border(p, g);
+  return (r);
 }
 
 static double	update_time(t_game *g)
@@ -40,15 +44,6 @@ static double	update_time(t_game *g)
     return (0.0f);
   gettimeofday(&g->stime, NULL);
   return (step);
-}
-
-int		notify_clients(t_fd *cl, char const *s)
-{
-  size_t	i;
-
-  for (i = 0; i < list_size(cl); i++)
-    strcat(list_get(cl, i)->wbuf, s);
-  return (SUCCESS);
 }
 
 int		winner_score(t_game *g, t_fd *cl)
@@ -93,10 +88,14 @@ int		player_move(t_game *g, t_fd *cl)
       sprintf(s + strlen(s), "%sPLAYER %d %lf %lf %d", (*s ? "\n" : ""),
 	      list_get(cl, i)->fd, g->player[i].x, g->player[i].y,
 	      g->player[i].score);
+      if (r == 2)
+	map_coin(g, cl, i, &s);
+      else if ((r / 10) == 1)
+	final = winner_score(g, cl);
     }
   if (final)
     sprintf(s + strlen(s), "%sFINISH %d", (*s ? "\n" : ""), final);
-  notify_clients(cl, s);
+  client_notify(cl, s);
   return (SUCCESS);
 }
 

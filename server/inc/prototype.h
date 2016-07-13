@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 21:15:55 2016 David Calo
-** Last update Wed Jul 13 11:22:48 2016 David Calo
+** Last update Wed Jul 13 22:16:29 2016 David Calo
 */
 
 #ifndef PROTOTYPE_H_
@@ -22,6 +22,8 @@ int	client_read(t_server *, size_t);
 int	client_write(t_server *, size_t);
 int	client_accept(int);
 int	client_close(t_fd *, size_t);
+int	client_notify(t_fd *, char const *);
+
 
 // game.c
 int	process_game(t_game *);
@@ -33,6 +35,11 @@ int	list_add(t_fd *, t_fd *);
 int	list_remove(t_fd *, size_t);
 size_t	list_size(t_fd *);
 t_fd	*list_get(t_fd *, size_t);
+
+// map.c
+int	map_border(t_player *, t_game *);
+int	map_object(t_player *, t_game *);
+int	map_coin(t_game *, t_fd *, int, char (*)[]);
 
 // parser.c
 int	parser(t_fd *, char *);
