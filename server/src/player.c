@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Mon Jul 11 16:57:06 2016 David Calo
-** Last update Wed Jul 13 22:31:06 2016 David Calo
+** Last update Wed Jul 13 23:47:40 2016 David Calo
 */
 
 #include "server.h"
@@ -29,23 +29,6 @@ int		player_position(t_player *p, t_game *g, double step, int has_fire)
   return (r);
 }
 
-static double	update_time(t_game *g)
-{
-  struct timeval	ntime;
-  double		step;
-
-  if (TV_TO_SEC(g->stime) == 0)
-    gettimeofday(&g->stime, NULL);
-  gettimeofday(&ntime, NULL);
-  ntime.tv_sec -= g->stime.tv_sec;
-  ntime.tv_usec -= g->stime.tv_usec;
-  step = TV_TO_SEC(ntime);
-  if ((double)REFRESH_TIME > step)
-    return (0.0f);
-  gettimeofday(&g->stime, NULL);
-  return (step);
-}
-
 int		winner_score(t_game *g, t_fd *cl)
 {
   size_t	i;
@@ -67,13 +50,28 @@ int		winner_score(t_game *g, t_fd *cl)
   return (fd);
 }
 
+int	fn_entrop(t_game *g, t_fd *cl, int r[], char (*s)[])
+{
+  int final;
+
+  final = 0;
+  sprintf(*s + strlen(*s), "%sPLAYER %d %lf %lf %d", (**s ? "\n" : ""),
+	  list_get(cl, r[2])->fd, g->player[r[2]].x, g->player[r[2]].y,
+	  g->player[r[2]].score);
+  if (r[0] == 2)
+    map_coin(g, cl, r[2], s);
+  else if ((r[0] / 10) == 1)
+    final = winner_score(g, cl);
+  return (final);
+}
+
 int		player_move(t_game *g, t_fd *cl)
 {
   size_t	i;
   double	step;
   char		s[BUFFER_SIZE];
   int		final;
-  int		r;
+  int		r[2];
   int		fire;
 
   final = 0;
@@ -82,16 +80,11 @@ int		player_move(t_game *g, t_fd *cl)
     return (SUCCESS);
   for (i = 0; i < g->nplayer; i++)
     {
+      r[2] = i;
       fire = (HAS_FIRE(list_get(cl, i)->status) ? 1 : -1);
-      if ((r = player_position(&g->player[i], g, step, fire)) == FAIL)
+      if ((r[0] = player_position(&g->player[i], g, step, fire)) == FAIL)
 	final = (!final ? list_get(cl, i)->fd : -1);
-      sprintf(s + strlen(s), "%sPLAYER %d %lf %lf %d", (*s ? "\n" : ""),
-	      list_get(cl, i)->fd, g->player[i].x, g->player[i].y,
-	      g->player[i].score);
-      if (r == 2)
-	map_coin(g, cl, i, &s);
-      else if ((r / 10) == 1)
-	final = winner_score(g, cl);
+      final = ((r[1] = fn_entrop(g, cl, r, &s)) ? r[1] : final);
     }
   if (final)
     sprintf(s + strlen(s), "%sFINISH %d", (*s ? "\n" : ""), final);
