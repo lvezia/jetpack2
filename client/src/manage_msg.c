@@ -5,7 +5,7 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Fri Jul  8 11:55:32 2016 Louis Vezia
-** Last update	Tue Jul 12 21:18:04 2016 Louis Vezia
+** Last update	Wed Jul 13 15:31:40 2016 Louis Vezia
 */
 
 #include "client.h"
@@ -88,24 +88,22 @@ int		check_end(t_client *client)
 
 int		stock_msg(t_client *client)
 {
-  int		pos;
-  int		check;
+  int		p;
+  int		c;
   char		tmp[2];
   char		buffer[1024];
 
-  pos = 0;
-  check = 0;
   memset(tmp, '\0', 2);
   memset(buffer, '\0', 1024);
-  while (read(client->fd, tmp, 1) > 0 && check < 1024)
+  for (p = 0, c = 0; c < 1024; p++, c++)
     {
-      buffer[pos] = tmp[0];
-      if (buffer[pos] == '\n')
+      if (read(client->fd, tmp, 1) < 1)
+	  return ((client->player.end = 1));
+      buffer[p] = tmp[0];
+      if (buffer[p] == '\n')
 	break;
-      pos++;
-      check++;
     }
-  buffer[pos] = '\0';
+  buffer[p] = '\0';
   pthread_mutex_lock(&client->player.mutex);
   if (client->player.msg != NULL)
     free(client->player.msg);

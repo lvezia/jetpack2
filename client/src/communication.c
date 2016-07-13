@@ -5,7 +5,7 @@
 ** Login   <vezia_l@epitech.eu>
 **
 ** Started on  Thu Jul  7 18:44:39 2016 Louis Vezia
-** Last update	Wed Jul 13 10:10:03 2016 Louis Vezia
+** Last update	Wed Jul 13 15:27:39 2016 Louis Vezia
 */
 
 #include "client.h"
@@ -29,7 +29,7 @@ int	 	communication(t_client *client)
 
   set_value(client, &fd_read, &fd_write, &tv);
   usleep(100);
-  while ((select((client->fd) + 1, &fd_read, &fd_write, NULL, &tv)) > 0 &&
+  while ((select((client->fd) + 1, &fd_read, &fd_write, NULL, &tv)) >= 0 &&
 	 client->player.end == 0)
     {
       if (FD_ISSET(client->fd, &fd_read))
