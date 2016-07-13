@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 16:25:27 2016 David Calo
-** Last update Tue Jul 12 10:35:05 2016 David Calo
+** Last update Wed Jul 13 10:57:36 2016 David Calo
 */
 
 #include "server.h"
@@ -34,8 +34,8 @@ int	list_add(t_fd *l, t_fd *n)
 
   if (!l || !n)
     return (FAIL);
-  for (t = l; t->next; t = t->next)
-    ;
+  for (t = l; t->next; )
+    t = t->next;
   t->next = n;
   return (SUCCESS);
 }

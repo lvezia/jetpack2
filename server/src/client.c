@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 11:17:29 2016 David Calo
-** Last update Wed Jul 13 10:10:52 2016 David Calo
+** Last update Wed Jul 13 10:59:31 2016 David Calo
 */
 
 #include "server.h"
@@ -36,15 +36,13 @@ int	client_read(t_server *s, size_t n)
   if (*cl->rbuf)
     memset(cl->rbuf, 0, strlen(cl->rbuf));
   for (tmp = line; (tmp = strtok(tmp, "\n")); tmp = NULL)
-    {
-      if (!parser(cl, tmp))
-	{
-	  if (*cl->rbuf)
-	    strcat(cl->rbuf, "\n");
-	  strcat(cl->rbuf, tmp);
-	  printf("[%d] \"%s\"\n", cl->fd, cl->rbuf);
-	}
-    }
+    if (!parser(cl, tmp))
+      {
+	if (*cl->rbuf)
+	  strcat(cl->rbuf, "\n");
+	strcat(cl->rbuf, tmp);
+	printf("[%d] \"%s\"\n", cl->fd, cl->rbuf);
+      }
   return (SUCCESS);
 }
 
