@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 21:15:55 2016 David Calo
-** Last update Wed Jul 13 01:02:06 2016 David Calo
+** Last update Wed Jul 13 10:17:16 2016 David Calo
 */
 
 #ifndef MACROS_H_
@@ -18,8 +18,8 @@
 
 # define MAX_CLIENT 2
 # define LISTEN_MAX_CLIENT 8
+# define REFRESH_TIME (20 * 1e-3)
 # define BUFFER_SIZE 4096
-# define REFRESH_TIME (200 / 1000)
 # define MOV_SPEED (5)
 # define PLAYER_WEIGHT 1
 
