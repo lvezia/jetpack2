@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 21:15:55 2016 David Calo
-** Last update Tue Jul 12 17:52:50 2016 David Calo
+** Last update Wed Jul 13 09:32:11 2016 David Calo
 */
 
 #ifndef PROTOTYPE_H_
@@ -44,6 +44,10 @@ int	parser_fire(t_fd *, char *);
 // player.c
 int	player_info(t_server const *, int, int *);
 int	update_player(t_server *);
+
+// player_struct.c
+int	player_init(t_game *, t_fd *);
+int	player_clear(t_game *);
 
 // select.c
 int	server_select(t_server *);

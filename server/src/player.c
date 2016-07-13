@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Mon Jul 11 16:57:06 2016 David Calo
-** Last update Wed Jul 13 01:04:09 2016 David Calo
+** Last update Wed Jul 13 09:44:38 2016 David Calo
 */
 
 #include "server.h"
@@ -24,27 +24,6 @@ int	player_info(t_server const *s, int n, int *status)
     return (FAIL);
   printf("player_info: %d\n", *status);
   memset(cl->rbuf, 0, strlen(cl->rbuf));
-  return (SUCCESS);
-}
-
-// player_struct.c
-int		player_init(t_game *g, t_fd *cl)
-{
-  size_t	i;
-
-  printf("player_init\n");
-  g->nplayer = list_size(cl);
-  printf(" `- nb: %lu\n", g->nplayer);
-  if ((g->player = malloc(sizeof(*g->player) * g->nplayer)) == NULL)
-    return (FAIL);
-  memset(g->player, 0, sizeof(*g->player) * g->nplayer);
-  for (i = 0; i < g->nplayer; i++)
-    {
-      g->player[i].y = (double)g->my / 2;
-      g->player[i].vel = 0.0f;
-    }
-  printf(" `- [0]: %lf, %lf\n", g->player[0].x, g->player[0].y);
-  printf(" `- [1]: %lf, %lf\n", g->player[1].x, g->player[1].y);
   return (SUCCESS);
 }
 
