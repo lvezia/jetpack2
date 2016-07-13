@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Thu Jul  7 19:01:33 2016 David Calo
-** Last update Mon Jul 11 18:11:52 2016 David Calo
+** Last update Wed Jul 13 11:22:58 2016 David Calo
 */
 
 #include "macros.h"
@@ -15,6 +15,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
+
+int	print_usage(char const *cmd)
+{
+  dprintf(2, "Usage: %s %s\n", cmd, USAGE_MSG);
+  return (FAIL);
+}
 
 int	xputerror(char const *msg)
 {

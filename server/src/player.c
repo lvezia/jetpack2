@@ -32,7 +32,7 @@ int	player_position(t_player *p, double g, double step, int has_fire)
   p->fire = has_fire;
   p->x += MOV_SPEED * step;
   p->vel += step * (g * g) * p->fire;
-  p->y += 0;
+  p->y += step * p->vel;
   // *step * g->player[i].vel
   return (SUCCESS);
 }
@@ -72,8 +72,8 @@ int		player_move(t_game *g, t_fd *cl)
   printf("STEP: %lf\n", step);
   for (i = 0; i < g->nplayer; i++)
     {
-      printf("PLAYER %d, step: %lf, v: %lf, g: %lf\n", list_get(cl, i)->fd,
-	     step, g->player[i].vel, g->gravity);
+      // printf("PLAYER %d, step: %lf, v: %lf, g: %lf\n", list_get(cl, i)->fd,
+      // step, g->player[i].vel, g->gravity);
       player_position(&g->player[i], g->gravity, step,
 		      (HAS_FIRE(list_get(cl, i)->status) ? 1 : -1));
       sprintf(list_get(cl, i)->wbuf, "PLAYER %d %lf %lf %d",

@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Thu Jul  7 14:58:19 2016 David Calo
-** Last update Mon Jul 11 14:06:55 2016 David Calo
+** Last update Wed Jul 13 11:18:05 2016 David Calo
 */
 
 #include <string.h>
@@ -27,14 +27,14 @@ int		arg_read(int ac, char const *av[], t_server *s)
   fn[1] = &arg_gravity;
   fn[2] = &arg_map;
   if (ac % 2 == 0)
-    return (xputerror("Invalid argument"));
+    return (print_usage(av[0]));
   for (i = 1; i < ac; i += 2)
     for (j = 0; j < TABLEN(args); j++)
       if (strcmp(args[j], av[i]) == 0)
 	if (fn[j](av[i + 1], s))
-	  return (xputerror("Invalid argument"));
+	  return (print_usage(av[0]));
   if (!s->port || !s->game.gravity || s->game.map == NULL)
-    return (xputerror("Invalid argument"));
+    return (print_usage(av[0]));
   return (SUCCESS);
 }
 

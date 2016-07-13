@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 21:15:55 2016 David Calo
-** Last update Wed Jul 13 10:17:16 2016 David Calo
+** Last update Wed Jul 13 11:17:23 2016 David Calo
 */
 
 #ifndef MACROS_H_
@@ -15,6 +15,8 @@
 
 # define DEFAULT_PORT 4242
 # define DEFAULT_GRAVITY -9.81
+
+# define USAGE_MSG "-p <PORT> -g <GRAVITY> -m <MAP_FILE>"
 
 # define MAX_CLIENT 2
 # define LISTEN_MAX_CLIENT 8
