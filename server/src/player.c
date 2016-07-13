@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Mon Jul 11 16:57:06 2016 David Calo
-** Last update Wed Jul 13 09:44:38 2016 David Calo
+** Last update Wed Jul 13 10:15:36 2016 David Calo
 */
 
 #include "server.h"
@@ -27,9 +27,18 @@ int	player_info(t_server const *s, int n, int *status)
   return (SUCCESS);
 }
 
-int			player_move(t_game *g, t_fd *cl)
+int	player_position(t_player *p, double g, double step, int has_fire)
 {
-  size_t		i;
+  p->fire = has_fire;
+  p->x += MOV_SPEED * step;
+  p->vel += step * (g * g) * p->fire;
+  p->y += 0;
+  // *step * g->player[i].vel
+  return (SUCCESS);
+}
+
+static double	update_time(t_game *g)
+{
   struct timeval	ntime;
   double		step;
 
@@ -39,9 +48,19 @@ int			player_move(t_game *g, t_fd *cl)
   ntime.tv_sec -= g->stime.tv_sec;
   ntime.tv_usec -= g->stime.tv_usec;
   step = TV_TO_SEC(ntime);
-  if (REFRESH_TIME > step)
-    return (SUCCESS);
+  if ((double)REFRESH_TIME > step)
+    return (0.0f);
   gettimeofday(&g->stime, NULL);
+  return (step);
+}
+
+int		player_move(t_game *g, t_fd *cl)
+{
+  size_t	i;
+  double	step;
+
+  if ((step = update_time(g)) == 0.0f)
+    return (SUCCESS);
   // for (i = 0; i < g->nplayer; i++)
   //   {
   //     int pos = (int)g->player[i].x
@@ -55,11 +74,8 @@ int			player_move(t_game *g, t_fd *cl)
     {
       printf("PLAYER %d, step: %lf, v: %lf, g: %lf\n", list_get(cl, i)->fd,
 	     step, g->player[i].vel, g->gravity);
-      g->player[i].fire = (HAS_FIRE(list_get(cl, i)->status) ? 1 : -1);
-      g->player[i].x += MOV_SPEED * step;
-      g->player[i].vel += step * (g->gravity * g->gravity) * g->player[i].fire;
-      g->player[i].y += 0;
-      // *step * g->player[i].vel
+      player_position(&g->player[i], g->gravity, step,
+		      (HAS_FIRE(list_get(cl, i)->status) ? 1 : -1));
       sprintf(list_get(cl, i)->wbuf, "PLAYER %d %lf %lf %d",
 	      list_get(cl, i)->fd, g->player[i].x, g->player[i].y,
 	      g->player[i].score);

@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 11:17:29 2016 David Calo
-** Last update Tue Jul 12 22:02:29 2016 David Calo
+** Last update Wed Jul 13 10:10:52 2016 David Calo
 */
 
 #include "server.h"
@@ -29,7 +29,7 @@ int	client_read(t_server *s, size_t n)
   if ((r = read(cl->fd, line, BUFFER_SIZE)) < 1)
     {
       if (errno == EINVAL)
-	perror("getline");
+	perror("read");
       return (FAIL);
     }
   line[r - 1] = 0;
