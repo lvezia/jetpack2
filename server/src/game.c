@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Fri Jul  8 09:28:59 2016 David Calo
-** Last update Tue Jul 12 22:05:50 2016 David Calo
+** Last update Wed Jul 13 09:47:29 2016 David Calo
 */
 
 #include "server.h"
@@ -22,6 +22,8 @@ int	process_game(t_game *g)
   printf("x: %d, y: %d\n", g->mx, g->my);
   g->start = 0;
   g->player = NULL;
+  g->stime.tv_sec = 0;
+  g->stime.tv_usec = 0;
   return (SUCCESS);
 }
 
@@ -37,7 +39,7 @@ int		update_game(t_server *s)
   for (i = 1; i < size; i++)
     status &= list_get(s->client, i)->status;
   if (!IS_READY(status))
-    return (SUCCESS);
+    return (player_clear(&s->game));
   else if (!HAS_START(status))
     {
       for (i = 1; i < size; i++)

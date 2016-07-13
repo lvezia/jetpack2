@@ -5,7 +5,7 @@
 ** Login   <calo_d@epitech.eu>
 **
 ** Started on  Thu Jul  7 11:06:54 2016 David Calo
-** Last update Wed Jul 13 00:09:43 2016 David Calo
+** Last update Wed Jul 13 09:42:50 2016 David Calo
 */
 
 #ifndef SERVER_H_
@@ -53,6 +53,7 @@ struct	s_game
   char		start;
   size_t	nplayer;
   t_player	*player;
+  struct timeval	stime;
 };
 
 struct	s_server

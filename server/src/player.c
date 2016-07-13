@@ -30,19 +30,18 @@ int	player_info(t_server const *s, int n, int *status)
 int			player_move(t_game *g, t_fd *cl)
 {
   size_t		i;
-  static struct timeval	stime = (struct timeval){0, 0};
   struct timeval	ntime;
   double		step;
 
-  if (TV_TO_SEC(stime) == 0)
-    gettimeofday(&stime, NULL);
+  if (TV_TO_SEC(g->stime) == 0)
+    gettimeofday(&g->stime, NULL);
   gettimeofday(&ntime, NULL);
-  ntime.tv_sec -= stime.tv_sec;
-  ntime.tv_usec -= stime.tv_usec;
+  ntime.tv_sec -= g->stime.tv_sec;
+  ntime.tv_usec -= g->stime.tv_usec;
   step = TV_TO_SEC(ntime);
   if (REFRESH_TIME > step)
     return (SUCCESS);
-  gettimeofday(&stime, NULL);
+  gettimeofday(&g->stime, NULL);
   // for (i = 0; i < g->nplayer; i++)
   //   {
   //     int pos = (int)g->player[i].x
@@ -74,6 +73,8 @@ int		update_player(t_server *s)
     return (SUCCESS);
   if (!s->game.player)
     return (player_init(&s->game, s->client->next));
+  if (list_size(s->client->next) < MAX_CLIENT)
+    return (player_clear(&s->game));
   player_move(&s->game, s->client->next);
   return (SUCCESS);
 }
